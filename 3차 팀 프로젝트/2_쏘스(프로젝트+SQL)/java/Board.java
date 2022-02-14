@@ -3,7 +3,7 @@ package jeju.board.domain;
 import java.sql.Date;
 
 public class Board {
-	private long bNumber;
+	private long bnum;
 	private String nick;
 	private String subject;
 	private String kategorie;
@@ -11,14 +11,15 @@ public class Board {
 	private String content;
 	private long love;
 	private long hate;
-	private String bPhoto;
-	private String bOriPhoto;
-	private Date bDate;
-	private Date upDate;
+	private long views;
+	private String bphoto;
+	private String boriphoto;
+	private Date bdate;
+	private Date update;
 	private int division;
 	public Board() {}
-	public Board(long bNumber, String nick, String subject, String kategorie, String tag, String content, long love, long hate, String bPhoto, String bOriPhoto, Date bDate, Date upDate, int division) {
-		this.bNumber = bNumber;
+	public Board(long bnum, String nick, String subject, String kategorie, String tag, String content, long love, long hate, long views, String bphoto, String boriphoto, Date bdate, Date update, int division) {
+		this.bnum = bnum;
 		this.nick = nick;
 		this.subject = subject;
 		this.kategorie = kategorie;
@@ -26,17 +27,18 @@ public class Board {
 		this.content = content;
 		this.love = love;
 		this.hate = hate;
-		this.bPhoto = bPhoto;
-		this.bOriPhoto = bOriPhoto;
-		this.bDate = bDate;
-		this.upDate = upDate;
+		this.views = views;
+		this.bphoto = bphoto;
+		this.boriphoto = boriphoto;
+		this.bdate = bdate;
+		this.update = update;
 		this.division = division;
 	}
-	public long getBnumber() {
-		return bNumber;
+	public long getBnum() {
+		return bnum;
 	}
-	public void setBnumber(long bNumber) {
-		this.bNumber = bNumber;
+	public void setBnum(long bNumber) {
+		this.bnum = bNumber;
 	}
 	public String getNick() {
 		return nick;
@@ -80,29 +82,35 @@ public class Board {
 	public void setHate(long hate) {
 		this.hate = hate;
 	}
-	public String getBphoto() {
-		return bPhoto;
+	public long getViews() {
+		return views;
 	}
-	public void setBphoto(String bPhoto) {
-		this.bPhoto = bPhoto;
+	public void setViews(long views) {
+		this.views = views;
+	}
+	public String getBphoto() {
+		return bphoto;
+	}
+	public void setBphoto(String bphoto) {
+		this.bphoto = bphoto;
 	}
 	public String getBoriphoto() {
-		return bOriPhoto;
+		return boriphoto;
 	}
-	public void setBoriphoto(String bOriPhoto) {
-		this.bOriPhoto = bOriPhoto;
+	public void setBoriphoto(String boriphoto) {
+		this.boriphoto = boriphoto;
 	}
 	public Date getBdate() {
-		return bDate;
+		return bdate;
 	}
-	public void setBdate(Date bDate) {
-		this.bDate = bDate;
+	public void setBdate(Date bdate) {
+		this.bdate = bdate;
 	}
 	public Date getUpdate() {
-		return upDate;
+		return update;
 	}
-	public void setUpdate(Date upDate) {
-		this.upDate = upDate;
+	public void setUpdate(Date update) {
+		this.update = update;
 	}
 	public int getDivision() {
 		return division;

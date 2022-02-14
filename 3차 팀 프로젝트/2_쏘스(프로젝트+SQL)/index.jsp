@@ -258,6 +258,32 @@ $(function() {
 });
 
 </script>
+            
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/css/swiper.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.min.js"></script>
+
+<style type="text/css">
+
+.swiper-container {
+	width:620px;
+	height:420px;
+}
+.swiper-slide {
+	text-align:center;
+	display:flex; /* 내용을 중앙정렬 하기위해 flex 사용 */
+	align-items:center; /* 위아래 기준 중앙정렬 */
+	justify-content:center; /* 좌우 기준 중앙정렬 */
+	border:5px solid silver;
+	background-color:#fff;
+	border-radius:5px;
+	box-shadow:0 0 10px silver inset;
+	box-sizing:border-box; /* 이 설정을 하지 않으면 슬라이드시 큐브가 틀어짐 */
+	/* 아래에 있는 실행가능한 소스를 가지고 실험해 보세요 */
+}
+
+</style>
+
+
 <style>
 
 </style>
@@ -282,11 +308,24 @@ $(function() {
                 <p class="subTxt">현지인들만 아는 진짜 맛집.<br/>현지인들의 신뢰할 수 있는 평가로 선별된 맛집을 추천합니다.</p>
                 <p class="subTxt">스마트검색으로 나만을 위한 맛집을 찾아서 저장해두고 제주여행 때 편하게 찾아가세요.</p>
             </div>
-            <div class="mainImg">
-                <img src="https://cdn.jejujini.kr/resources/KR/img/event/pc_main_img1.png" alt="" class="pc">
-                <img src="https://cdn.jejujini.kr/resources/KR/img/event/m_main_img1.png" alt="" class="mobile">
-            </div>
-    	</div>
+
+		<div class="swiper-container myswiper" style="margin-top:-600;">
+		   <div class="swiper-wrapper">
+		      <div class="swiper-slide"><img src="photo/명리동식당.png" style="max-width: 100%; height: 100%;">
+		         <div style="margin-left:-200; z-index:1; position:absolute;">
+		             <a href='food.do?m=content&fnum=${food.fnum}'>${food.fname}<input type="submit" value="상세내용"></a>
+		               <div class="">${food.fintro}</div>
+		               <div class="">평점 : ${food.star}</div>
+		         </div>
+		      </div>
+		      <c:forEach items="${list}" var="food">
+		    </c:forEach>
+		   </div>
+		   <!-- 페이징 -->
+		   <div class="swiper-pagination"></div>
+		</div>
+		  </div>
+
 
     	<div class="section" id="section3">
             <div class="title">
@@ -403,6 +442,35 @@ $(function() {
 	        <img src="img/pop.jpg" alt="">
 	    </div>
 	</div>
+
+
+
+
+  <script>
+
+// 예제를 실행하기 위해서 myswiper 를 임의로 사용했습니다.
+new Swiper( '.myswiper', {
+
+	// 큐브 효과 사용
+	effect : 'cube',
+
+	// 슬라이드 반복
+	loop : true,
+
+	// 페이징 설정
+	pagination : {
+
+		// 페이징 요소의 클래스명
+		el : '.swiper-pagination',
+
+		// 페이징을 클릭하면 해당 영역으로 이동, 필요시 지정해 줘야 기능 작동
+		clickable : true,
+
+	},
+
+});
+
+</script>
 
 </body>
 </html>

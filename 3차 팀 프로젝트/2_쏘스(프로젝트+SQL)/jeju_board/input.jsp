@@ -14,7 +14,7 @@
 		  alert("내용을 입력해주세요");
 		  return false;
 		}
-		if(document.input.kategorie.value == ""){
+		if(document.input.kategorie.options[document.input.kategorie.selectedIndex].text == "" || document.input.kategorie.options[document.input.kategorie.selectedIndex].text == "카테고리"){
 		  alert("카테고리를 선택");
 		  return false;
 		}
@@ -22,12 +22,13 @@
 		  alert("태그를 입력해주세요");
 		  return false;
 		}
-		if(document.input.division.value == ""){
+		if(document.input.division.options[document.input.division.selectedIndex].text == "" || document.input.division.options[document.input.division.selectedIndex].text == "지역"){
 		  alert("지역을 선택하세요");
 		  return false;
 		}		
 		document.input.submit();
 	  }
+	  
 	function filechk() {
 		existExt = ".gif,.jpg,.png,.jpeg";
 		existExArray = existExt.split(",");
@@ -82,22 +83,35 @@
 			</td>
 		  </tr>
 		  <tr>
-		    <td align="center" width="20%">카테고리</td>
-			<td align="center" width="80%">
-			  <input type="text" name="kategorie" size="60" value="">
-			</td>
-		  </tr>
-		  <tr>
 		    <td align="center" width="20%">태그</td>
 			<td align="center" width="80%">
-			  <input type="text" name="tag" size="60" value="">
+			  <input type="text" name="tag" size="60" value="#">
 			</td>
 		  </tr>
 		  <tr>
-		    <td align="center" width="20%">지역</td>
-			<td align="center" width="80%">
-			  <input type="text" name="division" size="60">
+		    <td align="center" width="20%">카테고리</td>
+			<td width="80%">
+			  <select name="kategorie">
+			  	<option value="none">카테고리</option>
+			  	<option value="food">맛집 리뷰</option>
+			  	<option value="activity">놀거리 리뷰</option>
+			  	<option value="hotel">숙박 리뷰</option>
+			  	<option value="landmark">볼거리 리뷰</option>
+			  </select>
 			</td>
+		  </tr>
+		  <tr>
+			  <td align="center" width="20%">지역</td>
+			  <td width="80%">
+			  <select name="division">
+			  	<option value="none">지역</option>
+			  	<option value="east">모험가득한 제주(동)</option>
+			  	<option value="west">제주에서의 힐링(서)</option>
+			  	<option value="center">제주의 숲(중앙)</option>
+			  	<option value="south">열대지방 제주(남)</option>
+			  	<option value="north">제주의 화려한 밤(북)</option>
+			  </select>
+			  </td>
 		  </tr>
 		  <tr>
 		    <td align="center" width="20%">사진</td>
