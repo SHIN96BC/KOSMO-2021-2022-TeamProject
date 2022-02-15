@@ -3,6 +3,7 @@ package jeju.board.model;
 import java.util.ArrayList;
 
 import jeju.board.domain.Board;
+import static jeju.board.model.BoardConst.*;
 
 public class BoardService {
 	public static final BoardService INSTANCE = new BoardService();
@@ -17,7 +18,7 @@ public class BoardService {
 		long psTemp = -1;
 		long cpTemp = -1;
 		
-		if(ps == -1) psTemp = 5;
+		if(ps == -1) psTemp = PAGE;
 		else psTemp = ps;
 		if(cp == -1) cpTemp = 1;
 		else cpTemp = cp;
@@ -33,6 +34,10 @@ public class BoardService {
 		}
 		return repository.insert(board);
 	}
+	public Board contentS(long bnum) {
+		return repository.content(bnum);
+	}
+	
 	private String tagSet(Board board) {
 		String tag = null;
 		String tagTemp = board.getTag();
@@ -62,7 +67,7 @@ public class BoardService {
 		long cpTemp = -1;
 		long maxPageTemp = -1;
 		
-		if(ps == -1) psTemp = 5;
+		if(ps == -1) psTemp = PAGE;
 		else psTemp = ps;
 		
 		if(cp == -1) cpTemp = 0;
@@ -92,7 +97,7 @@ public class BoardService {
 		long maxPage = -1;
 		long psTemp = -1;
 		if(ps == -1) {
-			psTemp = 5;
+			psTemp = PAGE;
 		}else {
 			psTemp = ps;
 		}

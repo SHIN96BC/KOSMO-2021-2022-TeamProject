@@ -1,10 +1,10 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <!doctype html>
 <html lang="ko">
 <head>
-<title>제주 지니</title>
+<title>제주 프렌즈</title>
 
 <meta name="Keywords" content="제주지니, 제주여행, 제주관광, 제주도, 제주시, 서귀포시, 안심여행, 제주살이, 축제, 제주바다, 해안도로, 당일치기, 제주도일상, 현지인맛집, 추천맛집, 여행코스, 산책, 제주문화, 마을여행, 할인쿠폰, 짐옮김, 핸즈프리, 짐 옮김이, 자유여행, 맞춤여행, 겨울여행, 제주, 핫플레이스, 여행정보, 제주도2박3일코스, 제주도관광코스, 제주도가볼만한곳, 제주가볼만한곳, 겨울제주도여행, 제주도흑돼지맛집, 1박2일제주도, 제주공항근처가볼만한곳, jejujini, Jeju Island, jeju travel, jeju trip, where to travel in korea, jeju korea, korea travel, korea trip, 济州旅游, 济州, 济州岛, 首尔 济州, 济州景点, 济州 冬天, travel app, 여행 앱">
 

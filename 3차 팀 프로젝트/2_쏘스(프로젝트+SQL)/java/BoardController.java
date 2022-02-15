@@ -29,6 +29,7 @@ public class BoardController extends HttpServlet {
 				case "input": input(request, response); break;
 				case "index": index(request, response); break;
 				case "insert": insert(request, response); break;
+				case "content": content(request, response); break;
 				default: mainBoard(request, response); break;
 			}
 		}else {
@@ -74,6 +75,18 @@ public class BoardController extends HttpServlet {
 		RequestDispatcher rd = request.getRequestDispatcher(view);
 		rd.forward(request, response);
 	}
+	private void content(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		BoardService service = BoardService.getInstance();
+		Board boardTemp = getParameterAll(request);
+		long bnum = boardTemp.getBnum();
+		Board board = service.contentS(bnum);
+		request.setAttribute("board", board);
+		
+		String view = "board_content.jsp";
+		RequestDispatcher rd = request.getRequestDispatcher(view);
+		rd.forward(request, response);
+	}
+	
 	private Board getParameterAll(HttpServletRequest request) {
 		Board board = new Board();
 		String bnumStr = request.getParameter("bnum");

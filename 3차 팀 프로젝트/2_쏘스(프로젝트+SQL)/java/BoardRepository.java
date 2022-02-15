@@ -62,6 +62,41 @@ class BoardRepository {
 			closeAll(con, pstmt, rs);
 		}
 	}
+	Board content(long bnum) {
+		Board contentList = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(CONTENT);
+			pstmt.setLong(1, bnum);
+			rs = pstmt.executeQuery();
+			while(rs.next()) { // rownum로 출력할때는 1번에 rnum이 들어오게 되서 2번 부터 값을 받아야한다.
+				String nick = rs.getString(2);
+				String subject = rs.getString(3);
+				String kategorie = rs.getString(4);
+				String tag = rs.getString(5);
+				String content = rs.getString(6);
+				long love = rs.getLong(7);
+				long hate = rs.getLong(8);
+				long views = rs.getLong(9);
+				String bPhoto = rs.getString(10);
+				String bOriPhoto = rs.getString(11);
+				Date bDate = rs.getDate(12);
+				Date upDate = rs.getDate(13);
+				int division = rs.getInt(14);
+				contentList = new Board(bnum, nick, subject, kategorie, tag, content, love, hate, views, bPhoto, bOriPhoto, bDate, upDate, division);
+			}
+			return contentList;
+		}catch(SQLException se) {
+			System.out.println("se: " + se);
+			return null;
+		}finally {
+			closeAll(con, pstmt, rs);
+		}
+			
+	}
 	boolean insert(Board board) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
