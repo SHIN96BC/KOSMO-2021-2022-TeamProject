@@ -1,4 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <!doctype html>
@@ -33,19 +35,56 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0" id="menuList">
-                <li class="nav-item"><a class="nav-link" href="jeju_board/jeju_board.do?message=mainBoard">게시판</a></li>
-                <li class="nav-item"><a class="nav-link" href="#portfolio">코스추천</a></li>
-                <li class="nav-item" id="boardP"><a id="board" class="nav-link" href="login/login.do?m=loginmenu">마이페이지</a></li>
-                <li class="nav-item" id="loginInfo"><a id="login" class="nav-link" href="login/login.do?m=loginmenu">Login</a></li>
-                <li class="nav-item" id="signupLogout"><a id="signup" class="nav-link" href="login/login.do?m=signin">Sign Up</a></li>
+            	<li class="nav-item" id="boardP"><a id="board" class="nav-link" href="member/mController?message=loginform">게시판</a></li>
+                <li class="nav-item" id="courseP"><a id="course" class="nav-link" href="member/mController?message=loginform">코스추천</a></li>
+                <li class="nav-item" id="contentsP"><a id="contents" class="nav-link" href="member/mController?message=loginform">컨텐츠</a></li>
+                <li class="nav-item" id="loginInfo"><a id="login" class="nav-link" href="member/mController?message=loginform">로그인</a></li>
+                <li class="nav-item" id="signupLogout"><a id="signup" class="nav-link" href="member/mController?message=signform">회원가입</a></li>
             </ul>
         </div>
     </div>
-    <a style='display:none;' id="info" class="nav-link" href="login/login.do?m=info">님 어서오세요</a>
-    <a style='display:none;' id="logout" class="nav-link" href="login/login.do?m=logout">logout</a>
+    <a style='display:none;' id="boardLogin" class="nav-link" href="jeju_board/jeju_board.do?message=mainBoard">게시판</a>
+    <a style='display:none;' id="courseLogin" class="nav-link" href="course/course.do?message=list">코스추천</a>
+    <a style='display:none;' id="contentsLogin" class="nav-link" href="contents/contents.do?message=list">컨텐츠</a>
+    <a style='display:none;' id="info" class="nav-link" href="login/login.do?m=info">${sessionScope.Member_Nick}님 어서오세요</a>
+    <a style='display:none;' id="logout" class="nav-link" href="member/mController?message=logout">로그아웃</a>
 </nav>
-
-
+<c:if test="${sessionScope.Member_Nick ne null}">
+	<script language=javascript>
+        	let loginInfo = document.getElementById('loginInfo');
+        	let signupLogout = document.getElementById('signupLogout');
+        	let boardP = document.getElementById('boardP');
+        	let courseP = document.getElementById('courseP');
+        	let contentsP = document.getElementById('contentsP');
+        	let login = document.getElementById('login');
+        	let signup = document.getElementById('signup');
+        	let board = document.getElementById('board');
+        	let course = document.getElementById('course');
+        	let contents = document.getElementById('contents');
+    		loginInfo.removeChild(login);
+    		signupLogout.removeChild(signup);
+    		boardP.removeChild(board);
+    		courseP.removeChild(course);
+    		contentsP.removeChild(contents);
+    		
+    		let info = document.getElementById('info');
+        	let logout = document.getElementById('logout');
+        	let boardLogin = document.getElementById('boardLogin');
+        	let courseLogin = document.getElementById('courseLogin');
+        	let contentsLogin = document.getElementById('contentsLogin');
+        	loginInfo.appendChild(info);
+        	signupLogout.appendChild(logout);
+        	boardP.appendChild(boardLogin);
+        	courseP.appendChild(courseLogin);
+        	contentsP.appendChild(contentsLogin);
+        	
+        	info.style.display = 'block';
+        	logout.style.display = 'block';
+        	boardLogin.style.display = 'block';
+        	courseLogin.style.display = 'block';
+        	contentsLogin.style.display = 'block';
+    </script>
+</c:if>
 <!-- 
 <meta property="og:title" content="[JEJUJINI] 진짜 제주를 맛보다" />
 <meta property="og:description" content="제주지니가 알려주는 생생한 정보를 공유해 보세요." />
@@ -95,7 +134,7 @@
     <div class="login_wrap">
         <button type="button" class="layerClose">닫기</button>
         <p class="loginTit">혼저옵서예!</p>
-        <p class="loginTxt">간편한 SNS 로그인으로<br>제주지니와 함께 여행을 떠나요!</p>
+        <p class="loginTxt">간편한 SNS 로그인으로<br>제주프렌즈와 함께 여행을 떠나요!</p>
         <ul class="login_btn_group all_list loginSnsBtn">
             <li class="login1"><button type="button" class="btn_base kakao" value="K"><span>카카오톡으로 로그인</span></button></li><!-- 카카오톡 로그인 -->
 			<li class="login2"><button type="button" class="btn_base naver" value="N"><span>네이버로 로그인</span></button></li><!-- 네이버 로그인 -->
