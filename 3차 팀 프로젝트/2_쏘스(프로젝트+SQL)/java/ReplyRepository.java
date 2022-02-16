@@ -1,5 +1,7 @@
 package jeju.reply.model;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 
 import javax.naming.Context;
@@ -22,6 +24,9 @@ class ReplyRepository {
 	}
 	public ArrayList<Reply>listAll() {
 		ArrayList<Reply> list = new ArrayList<Reply>();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
 		return list;
 	}
 }

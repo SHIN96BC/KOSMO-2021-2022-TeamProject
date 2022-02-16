@@ -18,7 +18,7 @@ public class BoardService {
 		long psTemp = -1;
 		long cpTemp = -1;
 		
-		if(ps == -1) psTemp = PAGE;
+		if(ps == -1) psTemp = BOARD_PAGE;
 		else psTemp = ps;
 		if(cp == -1) cpTemp = 1;
 		else cpTemp = cp;
@@ -37,6 +37,33 @@ public class BoardService {
 	public Board contentS(long bnum) {
 		return repository.content(bnum);
 	}
+	public void deleteS(long bnum) {
+		repository.delete(bnum);
+	}
+	public void updateS(Board board) {
+		repository.update(board);
+	} 
+	public long viewsCheckS(long bnum) {
+		return repository.viewsCheck(bnum);
+	}
+	public void viewsUpdateS(long bnum, long views) {
+		views++;
+		repository.viewsUpdate(bnum, views);
+	}
+	public long loveCheckS(long bnum) {
+		return repository.viewsCheck(bnum);
+	}
+	public void loveUpdateS(long bnum, long love) {
+		love++;
+		repository.viewsUpdate(bnum, love);
+	}
+	public long hateCheckS(long hate) {
+		return repository.viewsCheck(hate);
+	}
+	public void hateUpdateS(long bnum, long hate) {
+		hate++;
+		repository.viewsUpdate(bnum, hate);
+	}
 	
 	private String tagSet(Board board) {
 		String tag = null;
@@ -45,12 +72,14 @@ public class BoardService {
 			String[] tagList = tagTemp.split(" ");
 			
 			for(int i=0; i<tagList.length; i++) {
-				if(tagList[i].trim().length() == 0) continue;
-				if(!tagList[i].startsWith("#")) {
-					tag += "#"+tagList[i]+" ";
-				}else {
-					if(tagList[i].trim().length() == 1) continue;
-					tag += tagList[i]+" ";
+				if(tagList[i] != null) {
+					if(tagList[i].trim().length() == 0) continue;
+					if(!tagList[i].startsWith("#")) {
+						tag += "#"+tagList[i]+" ";
+					}else {
+						if(tagList[i].trim().length() == 1) continue;
+						tag += tagList[i]+" ";
+					}
 				}
 			}
 		}
@@ -67,7 +96,7 @@ public class BoardService {
 		long cpTemp = -1;
 		long maxPageTemp = -1;
 		
-		if(ps == -1) psTemp = PAGE;
+		if(ps == -1) psTemp = BOARD_PAGE;
 		else psTemp = ps;
 		
 		if(cp == -1) cpTemp = 0;
@@ -97,7 +126,7 @@ public class BoardService {
 		long maxPage = -1;
 		long psTemp = -1;
 		if(ps == -1) {
-			psTemp = PAGE;
+			psTemp = BOARD_PAGE;
 		}else {
 			psTemp = ps;
 		}

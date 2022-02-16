@@ -123,6 +123,153 @@ class BoardRepository {
 			closeAll(con, pstmt, null);
 		}
 	}
+	void delete(long bnum) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(DELETE);
+			pstmt.setLong(1, bnum);
+			pstmt.executeUpdate();
+		}catch(SQLException se) {
+		}finally {
+			closeAll(con, pstmt, null);
+		}
+	}
+	void update(Board board) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(UPDATE);
+			pstmt.setString(1, board.getSubject());
+			pstmt.setString(2, board.getKategorie());
+			pstmt.setString(3, board.getTag());
+			pstmt.setString(4, board.getContent());
+			if(board.getBphoto() != null && board.getBoriphoto() != null) {
+				pstmt.setString(5, board.getBphoto());
+				pstmt.setString(6, board.getBoriphoto());
+			}
+			pstmt.setInt(7, board.getDivision());
+			pstmt.setLong(8, board.getBnum());
+			int i = pstmt.executeUpdate();
+			if(i>0) {
+				System.out.println("인서트 성공");
+			}else {
+				System.out.println("인서트 실패");
+			}
+		}catch(SQLException se) {
+			System.out.println("update se: "+se);
+		}finally {
+			closeAll(con, pstmt, null);
+		}
+	}
+	long viewsCheck(long postNumber) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(VIEWS_CHECK);
+			pstmt.setLong(1, postNumber);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				long views = rs.getLong(1);
+				return views;
+			}else {
+				return -1;
+			}
+		}catch(SQLException se) {
+			return -1;
+		}finally {
+			closeAll(con, pstmt, rs);
+		}
+	}
+	void viewsUpdate(long postNumber, long views) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(VIEWS_UP);
+			pstmt.setLong(1, views);
+			pstmt.setLong(2, postNumber);
+			pstmt.executeUpdate();
+		}catch(SQLException se) {
+		}finally {
+			closeAll(con, pstmt, null);
+		}
+	}
+	long loveCheck(long bnum) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(LOVE_CHECK);
+			pstmt.setLong(1, bnum);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				long love = rs.getLong(1);
+				return love;
+			}else {
+				return -1;
+			}
+		}catch(SQLException se) {
+			return -1;
+		}finally {
+			closeAll(con, pstmt, rs);
+		}
+	}
+	void loveUpdate(long bnum, long love) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(LOVE_UP);
+			pstmt.setLong(1, love);
+			pstmt.setLong(2, bnum);
+			pstmt.executeUpdate();
+		}catch(SQLException se) {
+		}finally {
+			closeAll(con, pstmt, null);
+		}
+	}
+	long hateCheck(long bnum) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(VIEWS_CHECK);
+			pstmt.setLong(1, bnum);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				long hate = rs.getLong(1);
+				return hate;
+			}else {
+				return -1;
+			}
+		}catch(SQLException se) {
+			return -1;
+		}finally {
+			closeAll(con, pstmt, rs);
+		}
+	}
+	void hateUpdate(long bnum, long hate) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(VIEWS_UP);
+			pstmt.setLong(1, bnum);
+			pstmt.setLong(2, hate);
+			pstmt.executeUpdate();
+		}catch(SQLException se) {
+		}finally {
+			closeAll(con, pstmt, null);
+		}
+	}
+	
 	long boardCount() {
 		Connection con = null;
 		PreparedStatement pstmt = null;

@@ -64,28 +64,29 @@
 	  <hr width="600" color="Maroon" size="2" noshade>
 	</center>
       <!-------------------- re 변화 1 ------------------------------->
-	  <form name="input" method="post" action="jeju_board.do?message=insert" enctype="multipart/form-data">
+	  <form name="input" method="post" action="jeju_board.do?message=update" enctype="multipart/form-data">
 	  <!-------------------------------------------------------------->
 	    <!-- <input type="hidden"  name="method" value="writeOk"> -->
 	    <input type="hidden"  name="email" value="${sessionScope.Member_Email}">
 		<input type="hidden"  name="nick" value="${sessionScope.Member_Nick}">
+		<input type="hidden"  name="bnum" value="${board.bnum}">
 	    <table align="center" width="600" cellspacing="1" cellpadding="3" border="1">
 		  <tr>
 		    <td align="center" width="20%">제목</td>
 			<td align="center" width="80%">
-			  <input type="text" name="subject" size="60">
+			  <input type="text" name="subject" size="60" value="${board.subject}">
 			</td>
 		  </tr>
 		  <tr>
 		    <td align="center" width="20%">내용</td>
 			<td align="center" width="80%">
-			  <textarea id ="content2" name="content" rows="10" cols="60" type="text"></textarea>
+			  <textarea id ="content2" name="content" rows="10" cols="60" type="text">${board.content}</textarea>
 			</td>
 		  </tr>
 		  <tr>
 		    <td align="center" width="20%">태그</td>
 			<td align="center" width="80%">
-			  <input type="text" name="tag" size="60" value="#">
+			  <input type="text" name="tag" size="60" value="${board.tag}">
 			</td>
 		  </tr>
 		  <tr>
@@ -118,7 +119,7 @@
 			  <tr>
 			    <td align="center" width="20%">사진</td>
 				<td width="80%">
-					<input id="input_file" type="file" accept=".gif, .jpg, .png, .jpeg" name="photoName" onchange="javascript:filechk()"/>
+					<input id="input_file" type="file" accept=".gif, .jpg, .png, .jpeg" name="photoName" onchange="javascript:filechk()" value="${board.boriphoto}"/>
 				</td>
 			  </tr>
 		  <tr>

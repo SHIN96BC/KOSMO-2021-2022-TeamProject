@@ -2,7 +2,6 @@ package jeju.reply.domin;
 
 public class Reply {
 	private long rnum;
-	private int classfi;
 	private String nick;
 	private String content;
 	private long love;
@@ -10,10 +9,11 @@ public class Reply {
 	private long page;
 	private long lev;
 	private long turn;
+	private int classfi;
+	private long contentnum;
 	public Reply() {}
-	public Reply(long rnum, int classfi, String nick, String content, long love, long hate, long page, long lev, long turn) {
+	public Reply(long rnum, String nick, String content, long love, long hate, long page, long lev, long turn, int classfi, long contentnum) {
 		this.rnum = rnum;
-		this.classfi = classfi;
 		this.nick = nick;
 		this.content = content;
 		this.love = love;
@@ -21,18 +21,14 @@ public class Reply {
 		this.page = page;
 		this.lev = lev;
 		this.turn = turn;
+		this.classfi = classfi;
+		this.contentnum = contentnum;
 	}
 	public long getRnum() {
 		return rnum;
 	}
 	public void setRnum(long rnum) {
 		this.rnum = rnum;
-	}
-	public int getClassfi() {
-		return classfi;
-	}
-	public void setClassfi(int classfi) {
-		this.classfi = classfi;
 	}
 	public String getNick() {
 		return nick;
@@ -76,4 +72,17 @@ public class Reply {
 	public void setTurn(long turn) {
 		this.turn = turn;
 	}
+	public int getClassfi() {
+		return classfi;
+	}
+	public void setClassfi(int classfi) {
+		this.classfi = classfi;
+	}
+	public long getContentnum() {
+		return contentnum;
+	}
+	public void setContentnum(long contentnum) {
+		this.contentnum = contentnum;
+	}
+	
 }

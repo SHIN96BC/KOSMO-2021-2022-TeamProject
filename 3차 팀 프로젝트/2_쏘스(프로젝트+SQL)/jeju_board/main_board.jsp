@@ -15,25 +15,64 @@
 		
 		 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav" style="background-color:black; opacity: 0.5;">
 		    <div class="container">
-		        <a class="navbar-brand" href="#page-top"><img style="width:110; height:50;" src="../img/jeju2.png" alt="..." /></a>
+		        <a class="navbar-brand" href="jeju_board.do?message=index"><img style="width:110; height:50;" src="../img/jeju2.png" alt="..." /></a>
 		        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
 		            Menu
 		            <i class="fas fa-bars ms-1"></i>
 		        </button>
-		        <div class="collapse navbar-collapse" id="navbarResponsive">
-		            <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0" id="menuList">
-		                <li class="nav-item"><a class="nav-link" href="jeju_board.do?message=mainBoard">게시판</a></li>
-		                <li class="nav-item"><a class="nav-link" href="#portfolio">코스추천</a></li>
-		                <li class="nav-item" id="boardP"><a id="board" class="nav-link" href="login/login.do?m=loginmenu">마이페이지</a></li>
-		                <li class="nav-item" id="loginInfo"><a id="login" class="nav-link" href="login/login.do?m=loginmenu">Login</a></li>
-		                <li class="nav-item" id="signupLogout"><a id="signup" class="nav-link" href="login/login.do?m=signin">Sign Up</a></li>
-		            </ul>
-		        </div>
-		    </div>
-		    <a style='display:none;' id="info" class="nav-link" href="login/login.do?m=info">님 어서오세요</a>
-		    <a style='display:none;' id="logout" class="nav-link" href="login/login.do?m=logout">logout</a>
-		</nav>
-			
+		<div class="collapse navbar-collapse" id="navbarResponsive">
+		    <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0" id="menuList">
+            	<li class="nav-item" id="boardP"><a id="board" class="nav-link" href="../member/mController?message=loginform">게시판</a></li>
+                <li class="nav-item" id="courseP"><a id="course" class="nav-link" href="../member/mController?message=loginform">코스추천</a></li>
+                <li class="nav-item" id="contentsP"><a id="contents" class="nav-link" href="../member/mController?message=loginform">컨텐츠</a></li>
+                <li class="nav-item" id="loginInfo"><a id="login" class="nav-link" href="../member/mController?message=loginform">로그인</a></li>
+                <li class="nav-item" id="signupLogout"><a id="signup" class="nav-link" href="../member/mController?message=signform">회원가입</a></li>
+            </ul>
+        </div>
+    </div>
+    <a style='display:none;' id="boardLogin" class="nav-link" href="jeju_board.do?message=mainBoard">게시판</a>
+    <a style='display:none;' id="courseLogin" class="nav-link" href="../course/course.do?message=list">코스추천</a>
+    <a style='display:none;' id="contentsLogin" class="nav-link" href="../contents/contents.do?message=list">컨텐츠</a>
+    <a style='display:none;' id="info" class="nav-link" href="../login/login.do?m=info">${sessionScope.Member_Nick}님 어서오세요</a>
+    <a style='display:none;' id="logout" class="nav-link" href="../member/mController?message=logout">로그아웃</a>
+</nav>
+<c:if test="${sessionScope.Member_Nick ne null}">
+	<script language=javascript>
+        	let loginInfo = document.getElementById('loginInfo');
+        	let signupLogout = document.getElementById('signupLogout');
+        	let boardP = document.getElementById('boardP');
+        	let courseP = document.getElementById('courseP');
+        	let contentsP = document.getElementById('contentsP');
+        	let login = document.getElementById('login');
+        	let signup = document.getElementById('signup');
+        	let board = document.getElementById('board');
+        	let course = document.getElementById('course');
+        	let contents = document.getElementById('contents');
+    		loginInfo.removeChild(login);
+    		signupLogout.removeChild(signup);
+    		boardP.removeChild(board);
+    		courseP.removeChild(course);
+    		contentsP.removeChild(contents);
+    		
+    		let info = document.getElementById('info');
+        	let logout = document.getElementById('logout');
+        	let boardLogin = document.getElementById('boardLogin');
+        	let courseLogin = document.getElementById('courseLogin');
+        	let contentsLogin = document.getElementById('contentsLogin');
+        	loginInfo.appendChild(info);
+        	signupLogout.appendChild(logout);
+        	boardP.appendChild(boardLogin);
+        	courseP.appendChild(courseLogin);
+        	contentsP.appendChild(contentsLogin);
+        	
+        	info.style.display = 'block';
+        	logout.style.display = 'block';
+        	boardLogin.style.display = 'block';
+        	courseLogin.style.display = 'block';
+        	contentsLogin.style.display = 'block';
+    </script>
+</c:if>
+
 	
 		<style>
 			table, th, td {
@@ -124,17 +163,18 @@
 			 </div><!--/ cardbox-heading -->
 			  
 			 <div class="cardbox-item">
-			  <img class="img-fluid" src="../photo/${board.bphoto}" alt="Image" width="100%">
+			  <img class="img-fluid" src="../photo/${board.bphoto}" alt="" onerror="this.src='../img/tempLogo.jpg'" width="100%" height="100%">
 			 </div><!--/ cardbox-item -->
 			 <div class="cardbox-base">
 			  <ul class="float-right">
 			   <li><a href=""><i class="fa fa-comments"></i></a></li>
 			   <li><a><em class="mr-5">12</em></a></li>
 			   <li><a><i class="fa fa-share-alt"></i></a></li>
-			   <li><a><em class="mr-3">03</em></a></li>
+			   <li><a><em class="mr-3">${board.views}</em></a></li>
 			  </ul>
 			  <ul>
-			   <li><a><i class="fa fa-thumbs-up"></i></a></li>
+			   <li><a href="jeju_board.do?message=loveUpdate&bnum=${board.bnum}&boardKinds=mainBoard"><i class="fa fa-thumbs-up"></i></a></li>
+			   <li><a href="jeju_board.do?message=hateUpdate&bnum=${board.bnum}&boardKinds=mainBoard"><i class="fa fa-thumbs-down"></i></a></li>
 			   <li><a href="#"><img src="http://www.themashabrand.com/templates/bootsnipp/post/assets/img/users/3.jpeg" class="img-fluid rounded-circle" alt="User"></a></li>
 			   <li><a href="#"><img src="http://www.themashabrand.com/templates/bootsnipp/post/assets/img/users/1.jpg" class="img-fluid rounded-circle" alt="User"></a></li>
 			   <li><a href="#"><img src="http://www.themashabrand.com/templates/bootsnipp/post/assets/img/users/5.jpg" class="img-fluid rounded-circle" alt="User"></a></li>
@@ -165,7 +205,7 @@
 			ArrayList<Long> cpList = (ArrayList<Long>)request.getAttribute("cpList");
 			long ps = (Long)request.getAttribute("ps");
 			long cp = (Long)request.getAttribute("cp");
-			if(ps == -1) ps = BoardConst.PAGE;
+			if(ps == -1) ps = BoardConst.BOARD_PAGE;
 			if(cp == -1) cp = 1;
 			long size = (Long)request.getAttribute("size");
 			long cpListSize = cpList.size();
