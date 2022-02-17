@@ -4,7 +4,7 @@ drop table BOARD;
 purge recyclebin;
 
 create table BOARD(
-	B_NUM number constraint  POSTNUMBER_PK primary key,
+	B_NUM number constraint  BOARD_PK primary key,
 	NICK nvarchar2(50),
 	SUBJECT nvarchar2(300),
 	KATEGORIE nvarchar2(100),

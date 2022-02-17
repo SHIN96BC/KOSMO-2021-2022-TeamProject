@@ -26,7 +26,7 @@
     <a style='display:none;' id="boardLogin" class="nav-link" href="../jeju_board/jeju_board.do?message=mainBoard">게시판</a>
     <a style='display:none;' id="courseLogin" class="nav-link" href="../course/course.do?message=list">코스추천</a>
     <a style='display:none;' id="contentsLogin" class="nav-link" href="../contents/contents.do?message=list">컨텐츠</a>
-    <a style='display:none;' id="info" class="nav-link" href="../login/login.do?m=info">${sessionScope.Member_Nick}님 어서오세요</a>
+    <a style='display:none;' id="info" class="nav-link" href="../member/mController?message=myPage">${sessionScope.Member_Nick}님 어서오세요</a>
     <a style='display:none;' id="logout" class="nav-link" href="../member/mController?message=logout">로그아웃</a>
 </nav>
 <c:if test="${sessionScope.Member_Nick ne null}">
@@ -66,83 +66,71 @@
     </script>
 </c:if>
 
+
+		<link href="../css/content.css" rel="stylesheet" />
+		<link href="https://fonts.googleapis.com/css?family=Rokkitt" rel="stylesheet"> 
+		<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+		<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<!------ Include the above in your HEAD tag ---------->
+		<link href="https://fonts.googleapis.com/css?family=Rokkitt" rel="stylesheet"> 
+		<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
 	
-		<meta charset='utf-8'>
-		<style>
-			table, th, td {
-			   border: 1px solid black;
-			   border-collapse: collapse;
-			}
-			th, td {
-			   padding: 5px;
-			}
-			a { text-decoration:none }
-		</style>
-		<center>
-		<div style="margin-top:150"></div>
-		<img src ="../photo/${landmark.lphoto }">
-		<hr width='600' size='2' noshade>
-		<h2>볼거리 내용</h2>
-		&nbsp;&nbsp;&nbsp;&nbsp;
-		<a href='land.do?m=input2'>임시 </a>
-		<hr width='600' size='2' noshade>
-		<table border='1' width='600' align='center' cellpadding='3'>
+<meta charset='utf-8'>
+      <style>
+         table, th, td {
+            border: 1px solid white;
+            border-collapse: collapse;
+         }
+         th, td {
+            padding: 3px;
+         }
+         a { text-decoration:none }
+      </style>
+      <center>
+      <div style="margin-top:130"></div>
+      <img src ="../photo/${landmark.lphoto }">
+      <font size="6"; color="black"; face="나눔고딕 ExtraBold">
+      <div style= "margin-bottom:20;"></div>
+      <h1>${landmark.lname}</h1>
+      </font>
+      <div align ="center" style= "margin-bottom:25;" ></div>
+      ${landmark.lintro}
+      <hr width='600' size='2' noshade>
+      <table border='1' width='600' align='center' cellpadding='3'>
 
 <c:if test="${empty landmark }">
-	 <tr>
-				<td colspan="2" style="text-align:center">데이터가 하나도 없네요</td>
-	 </tr>
+    <tr>
+            <td colspan="2" style="text-align:center">데이터가 하나도 없네요</td>
+    </tr>
 </c:if>
-		<tr>
-			<td width='100' align='center'>볼거리번호</td>
-			<td>${landmark.lnum}</td>
-			</tr>
-		<tr>
-			<td align='center'>장소 이름</td>
-			<td>${landmark.lname}</td>
-		</tr>
-		<tr>
-			<td align='center'>장소 소개</td>
-			<td>${landmark.lintro}</td>
-		</tr>
-		<tr>
-			<td align='center'>전화번호</td>
-			<td>${landmark.lphone}</td>
-		</tr>
-		<tr>
-			<td align='center'>장소사진</td>
-			<td>${landmark.lphoto}</td>
-		</tr>
-		<tr>
-			<td align='center'>장소진짜사진</td>
-			<td>${landmark.loriphoto}</td>
-		</tr>
-		<tr>
-			<td align='center'>리뷰</td>
-			<td>${landmark.review}</td>
-		</tr>
-		<tr>
-			<td align='center'>평점</td>
-			<td>${landmark.star}</td>
-		</tr>
-		<tr>
-			<td align='center'>조회수</td>
-			<td>${landmark.views}</td>
-		</tr>
-		<tr>
-			<td align='center'>코스등분</td>
-			<td>${landmark.division}</td>
-		</tr>
-											
-		</table>
-		<hr width='600' size='2' noshade>
-		<hr width='600' size='2' noshade>
-		<b>
-		<a href='land.do?m=delete&lnum=${landmark.lnum}'>삭제</a> 
-		<a href='land.do'>목록</a>
-		</b>
-		<hr width='600' size='2' noshade>
-		</center>
-
-
-
+      
+      <tr>
+         <td align='center'>주소</td>
+         <td>${landmark.laddress}</td>
+      </tr>
+      <tr>
+         <td align='center'>전화번호</td>
+         <td>${landmark.lphone}</td>
+      </tr>
+      <tr>
+         <td align='center'>리뷰</td>
+         <td>${landmark.review}</td>
+      </tr>
+      <tr>
+         <td align='center'>평점</td>
+         <td>${landmark.star}</td>
+      </tr>
+      <tr>
+         <td align='center'>조회수</td>
+         <td>${landmark.views}</td>
+      </tr>                           
+            </table>
+               <hr width='600' size='2' noshade>
+               <hr width='600' size='2' noshade>
+            <b>
+         <a href='land.do'>뒤로가기</a>
+      </b>
+   <hr width='600' size='2' noshade>
+</center>

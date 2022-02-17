@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8" import="java.util.ArrayList, jeju.board.model.BoardConst"%>
+<%@ page contentType="text/html; charset=UTF-8" import="java.util.ArrayList,jeju.all.consts.BoardConst"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!--<c:if test="${empty sessionScope.user}">
@@ -33,7 +33,7 @@
     <a style='display:none;' id="boardLogin" class="nav-link" href="jeju_board.do?message=mainBoard">게시판</a>
     <a style='display:none;' id="courseLogin" class="nav-link" href="../course/course.do?message=list">코스추천</a>
     <a style='display:none;' id="contentsLogin" class="nav-link" href="../contents/contents.do?message=list">컨텐츠</a>
-    <a style='display:none;' id="info" class="nav-link" href="../login/login.do?m=info">${sessionScope.Member_Nick}님 어서오세요</a>
+    <a style='display:none;' id="info" class="nav-link" href="../member/mController?message=myPage">${sessionScope.Member_Nick}님 어서오세요</a>
     <a style='display:none;' id="logout" class="nav-link" href="../member/mController?message=logout">로그아웃</a>
 </nav>
 <c:if test="${sessionScope.Member_Nick ne null}">
@@ -173,13 +173,14 @@
 			   <li><a><em class="mr-3">${board.views}</em></a></li>
 			  </ul>
 			  <ul>
-			   <li><a href="jeju_board.do?message=loveUpdate&bnum=${board.bnum}&boardKinds=mainBoard"><i class="fa fa-thumbs-up"></i></a></li>
-			   <li><a href="jeju_board.do?message=hateUpdate&bnum=${board.bnum}&boardKinds=mainBoard"><i class="fa fa-thumbs-down"></i></a></li>
+			   <li><a><i class="fa fa-thumbs-up"></i></a></li>
+			   <li><a><i class="fa fa-thumbs-down"></i></a></li>
 			   <li><a href="#"><img src="http://www.themashabrand.com/templates/bootsnipp/post/assets/img/users/3.jpeg" class="img-fluid rounded-circle" alt="User"></a></li>
 			   <li><a href="#"><img src="http://www.themashabrand.com/templates/bootsnipp/post/assets/img/users/1.jpg" class="img-fluid rounded-circle" alt="User"></a></li>
 			   <li><a href="#"><img src="http://www.themashabrand.com/templates/bootsnipp/post/assets/img/users/5.jpg" class="img-fluid rounded-circle" alt="User"></a></li>
 			   <li><a href="#"><img src="http://www.themashabrand.com/templates/bootsnipp/post/assets/img/users/2.jpg" class="img-fluid rounded-circle" alt="User"></a></li>
-			   <li><a><span>${board.love} Likes</span></a></li>
+			   <li><a><span>${board.love} Loves</span></a></li>
+			   <li><a><span>${board.hate} Hates</span></a></li>
 			  </ul>			   
 			 </div><!--/ cardbox-base -->
 			 <div class="cardbox-comments cardbox-item" style="margin-left:-25; margin-right:30;">

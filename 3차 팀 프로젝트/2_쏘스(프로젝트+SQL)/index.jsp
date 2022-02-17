@@ -46,9 +46,10 @@
     <a style='display:none;' id="boardLogin" class="nav-link" href="jeju_board/jeju_board.do?message=mainBoard">게시판</a>
     <a style='display:none;' id="courseLogin" class="nav-link" href="course/course.do?message=list">코스추천</a>
     <a style='display:none;' id="contentsLogin" class="nav-link" href="contents/contents.do?message=list">컨텐츠</a>
-    <a style='display:none;' id="info" class="nav-link" href="login/login.do?m=info">${sessionScope.Member_Nick}님 어서오세요</a>
+    <a style='display:none;' id="info" class="nav-link" href="member/mController?message=myPage">${sessionScope.Member_Nick}님 어서오세요</a>
     <a style='display:none;' id="logout" class="nav-link" href="member/mController?message=logout">로그아웃</a>
 </nav>
+
 <c:if test="${sessionScope.Member_Nick ne null}">
 	<script language=javascript>
         	let loginInfo = document.getElementById('loginInfo');
@@ -85,6 +86,7 @@
         	contentsLogin.style.display = 'block';
     </script>
 </c:if>
+
 <!-- 
 <meta property="og:title" content="[JEJUJINI] 진짜 제주를 맛보다" />
 <meta property="og:description" content="제주지니가 알려주는 생생한 정보를 공유해 보세요." />
@@ -342,77 +344,109 @@ $(function() {
     	</div><!--//section-->
 
     	<div class="section" id="section1">
-            <div class="title">
+            <div class="title"style="margin-top:120;">
                 <h4>맛집</h4>
                 <p class="subTxt">현지인들만 아는 진짜 맛집.<br/>현지인들의 신뢰할 수 있는 평가로 선별된 맛집을 추천합니다.</p>
                 <p class="subTxt">스마트검색으로 나만을 위한 맛집을 찾아서 저장해두고 제주여행 때 편하게 찾아가세요.</p>
             </div>
 
-		<div class="swiper-container myswiper" style="margin-top:-600;">
-		   <div class="swiper-wrapper">
-		      <div class="swiper-slide"><img src="photo/명리동식당.png" style="max-width: 100%; height: 100%;">
-		         <div style="margin-left:-200; z-index:1; position:absolute;">
-		             <a href='food.do?m=content&fnum=${food.fnum}'>${food.fname}<input type="submit" value="상세내용"></a>
-		               <div class="">${food.fintro}</div>
-		               <div class="">평점 : ${food.star}</div>
-		         </div>
-		      </div>
-		      <c:forEach items="${list}" var="food">
-		    </c:forEach>
-		   </div>
-		   <!-- 페이징 -->
-		   <div class="swiper-pagination"></div>
-		</div>
-		  </div>
+      <div class="swiper-container myswiper" style="margin-top:-600;">
+         <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="photo/꼭가야할곳.png" style="max-width: 650; height: 420;"></div>
+               <div class="swiper-slide"><img src="photo/갈치.png" style="max-width: 650; height: 420;"></div>
+                 <div class="swiper-slide"><img src="photo/흑돼지.png" style="max-width: 650; height: 420;"></div>
+                    <div class="swiper-slide"><img src="photo/고등어회.png" style="max-width: 650; height: 420;"></div>
+               
+    
+         </div>
+         <!-- 페이징 -->
+         <div class="swiper-pagination"></div>
+      </div>
+         <br></br>
+            <a id="food" href='member/mController?message=loginform' style='display:none;'><p class="subTxt">제주 맛집 더 알고 싶수꽝? click!</p></a>
+            <a id="foodLogin" href='food/food.do?m=list' style='display:block;'><p class="subTxt">제주 맛집 더 알고 싶수꽝? click!</p></a>
+        </div>
+         
 
-
-    	<div class="section" id="section3">
-            <div class="title">
+       <div class="section" id="section3">
+            <div class="title" style="margin-top:100;">
                 <h4>코스</h4>
                 <p class="subTxt">누구나 가는 뻔한 코스는 그만!<br/>여행의 컨셉에 맞는 테마지역을 탐색하면 생각지도 못한 제주도를 만날 수 있어요.</p>
                 <p class="subTxt">나만의 코스로 잊지 못할 제주에서의 추억을 만들어 보세요.</p>
             </div>
-            <div class="mainImg">
-                <img src="https://cdn.jejujini.kr/resources/KR/img/event/pc_main_img2.png" alt="" class="pc">
-                <img src="https://cdn.jejujini.kr/resources/KR/img/event/m_main_img2.png" alt="" class="mobile">
-            </div>
-    	</div>
+        
+        <div class="swiper-container myswiper" style="margin-top:-600;">
+         <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="photo/여행코스.jpg" style="max-width: 650; height: 420;"></div>
+                 <div class="swiper-slide"><img src="photo/코스2.jpg" style="max-width: 650; height: 420;"></div>
+                    <div class="swiper-slide"><img src="photo/코스3.jpg" style="max-width: 650; height: 420;"></div>
+                     <div class="swiper-slide"><img src="photo/코스4.jpg" style="max-width: 650; height: 420;"></div>
+               
 
-       
+         </div>
+         <!-- 페이징 -->
+         <div class="swiper-pagination"></div>
+      </div>
+         <br></br>
+         	<a id="course" href='member/mController?message=loginform' style='display:none;'><p class="subTxt">현지인들이 추천하는 코스 더 알고 싶수꽝? click!</p></a>
+            <a id="courseLogin" href='course/course.do?message=list' style='display:block;'><p class="subTxt">현지인들이 추천하는 코스 더 알고 싶수꽝? click!</p></a>
+      </div>
 
-		<div class="section" id="section5">
-            <div class="title">
-                <h4>할인쿠폰</h4>
-                <p class="subTxt">제주 전 지역에서 할인되는 다양한 쿠폰이 가득!<br>인기 관광지 할인쿠폰부터,<br>신청 즉시 최대 65%할인되는 3초할인쿠폰까지!</p>
-                <p class="subTxt">제주지니만의 특별한 할인가격으로 ‘진짜’ 제주를 관광하세요!</p>
+      <div class="section" id="section5">
+            <div class="title" style="margin-top:120;">
+                <h4>볼거리</h4>
+                <p class="subTxt">제주를 대표하는<br>유명한 관광명소 여기 다 있다!</p>
             </div>
-            <div class="mainImg">
-                <img src="https://cdn.jejujini.kr/resources/KR/img/event/pc_main_img7.png" alt="" class="pc">
-                <img src="https://cdn.jejujini.kr/resources/KR/img/event/m_main_img7.png" alt="" class="mobile">
-            </div>
-        </div>
+            
+        <div class="swiper-container myswiper" style="margin-top:-600;">
+         <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="photo/꼭가야할곳.png" style="max-width: 650; height: 420;"></div>
+              <div class="swiper-slide"><img src="photo/볼거리1.jpg" style="max-width: 650; height: 420;"></div>
+                 <div class="swiper-slide"><img src="photo/볼거리2.jpg" style="max-width: 650; height: 420;"></div>
+                    <div class="swiper-slide"><img src="photo/볼거리3.png" style="max-width: 650; height: 420;"></div>
+                     <div class="swiper-slide"><img src="photo/볼거리4.jpg" style="max-width: 650; height: 420;"></div>
+ 
+         </div>
+         <!-- 페이징 -->
+         <div class="swiper-pagination"></div>
+      </div>
+         <br></br>
+         	<a id="land" href='member/mController?message=loginform' style='display:none;'><p class="subTxt">제주도의 랜드마크 더 알고 싶수꽝? click!</p></a>
+            <a id="landLogin" href='land/land.do?m=list' style='display:block;'><p class="subTxt">제주도의 랜드마크 더 알고 싶수꽝? click!</p></a>
+      </div>
+
+	
 
         <!-- 190419 추가 -->
         <div class="section" id="section6">
-            <div class="title">
-                <h4>제주 특산물</h4>
-                <p class="subTxt">제주 특산물도 제주지니에서!<br/>제주도 경제통상진흥원이 제주산 원료와 엄격한<br/>입점절차를 통해 운영하는 믿을 수 있는 특산물 쇼핑몰!</p>
-                <p class="subTxt">제주지니 회원전용 할인혜택으로<br/>이제 집에서도 제주를 맛보세요!</p>
+            <div class="title" style="margin-top:120;">
+                <h4>로컬체험</h4>
+                <p class="subTxt">지루한거 말고<br/>재미있는 놀거리 골라봐요!<br>여행할 지역을 선택하면 로컬체험 목록이 보여요.</p>
             </div>
-            <div class="mainImg">
-                <img src="https://cdn.jejujini.kr/resources/KR/img/event/pc_main_img8.png" alt="" class="pc">
-                <img src="https://cdn.jejujini.kr/resources/KR/img/event/m_main_img8.png" alt="" class="mobile">
-            </div>
+            
+        <div class="swiper-container myswiper" style="margin-top:-600;">
+         <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="photo/제주도액티비티.jpg" style="max-width: 650; height: 420;"></div>
+              <div class="swiper-slide"><img src="photo/놀거리1.png" style="max-width: 650; height: 420;"></div>
+                 <div class="swiper-slide"><img src="photo/놀거리2.png" style="max-width: 650; height: 420;"></div>
+                     <div class="swiper-slide"><img src="photo/놀거리4.png" style="max-width: 650; height: 420;"></div>
+
+         </div>
+         <!-- 페이징 -->
+         <div class="swiper-pagination"></div>
+      </div>
+         <br></br>
+         	<a id="activity" href='member/mController?message=loginform' style='display:none;'><p class="subTxt">제주도의 놀거리 더 알고 싶수꽝? click!</p></a>
+            <a id="activityLogin" href='activity/activity.do?m=list' style='display:block;'><p class="subTxt">제주도의 놀거리 더 알고 싶수꽝? click!</p></a>
         </div>
-        <!--// 190419 추가 -->
 
         <div class="section" id="section7">
             <div class="title">
                 <h4>그리고!</h4>
                 <!-- 181012 수정 -->
-                <p class="subTxt">제주지니는 여러분의 특별한 여행친구가 되기 위해 더욱 즐겁고 편리한 서비스를 계속 준비하고 있습니다.</p>
+                <p class="subTxt">제주프렌즈는 여러분의 특별한 여행친구가 되기 위해 더욱 즐겁고 편리한 서비스를 계속 준비하고 있습니다.</p>
                 <p class="subTxt">무거운 여행가방으로부터 자유롭고 원하는 시간에 원하는 곳으로 편리하게 이동하고<br />맛집에서 더 이상 줄을 서서 기다리지 않는 여행!</p>
-                <p class="subTxt">소소하지만 특별하고 확실한 즐거움을 주는 여러분의 제주지니가 되겠습니다.</p>
+                <p class="subTxt">소소하지만 특별하고 확실한 즐거움을 주는 여러분의 제주프렌즈가 되겠습니다.</p>
                 <!--// 181012 수정 -->
             </div>
             <div class="mainImg">
@@ -481,6 +515,37 @@ $(function() {
 	        <img src="img/pop.jpg" alt="">
 	    </div>
 	</div>
+
+<%
+	String sessionNick = (String)session.getAttribute("Member_Nick");
+	System.out.println("sessionNick: " + sessionNick);
+	
+%>
+	<script language=javascript>
+		if(<%=sessionNick%> != null){
+			alter("if문 안");
+			let food = document.getElementById('food');
+			let foodLogin = document.getElementById('foodLogin');
+			let course = document.getElementById('course');
+			let courseLogin = document.getElementById('courseLogin');
+			let land = document.getElementById('land');
+			let landLogin = document.getElementById('landLogin');
+			let activity = document.getElementById('activity');
+			let activityLogin = document.getElementById('activityLogin');
+			
+			course.style.display = 'none';
+			courseLogin.style.display = 'block';
+			land.style.display = 'none';
+			landLogin.style.display = 'block';
+			food.style.display = 'none';
+			foodLogin.style.display = 'block';
+			activity.style.display = 'none';
+			activityLogin.style.display = 'block';
+		}else{
+			alter("else문 안");
+		}
+		
+	</script>
 
 
 
