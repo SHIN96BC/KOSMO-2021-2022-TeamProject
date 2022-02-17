@@ -1,6 +1,6 @@
 package activity.mvc.model;
 
-import static activity.mvc.model.BoardConst.*;
+import static jeju.all.consts.BoardConst.*;
 
 import java.util.ArrayList;
 

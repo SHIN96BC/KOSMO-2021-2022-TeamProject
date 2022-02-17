@@ -1,6 +1,6 @@
 package food.mvc.model;
 
-import static food.mvc.model.BoardConst.*;
+import static jeju.all.consts.BoardConst.*;
 
 import java.util.ArrayList;
 

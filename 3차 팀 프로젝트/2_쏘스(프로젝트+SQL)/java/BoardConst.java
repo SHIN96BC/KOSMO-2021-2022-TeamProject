@@ -1,4 +1,4 @@
-package jeju.board.model;
+package jeju.all.consts;
 
 public class BoardConst {
 	public static final int CENTER = 1;

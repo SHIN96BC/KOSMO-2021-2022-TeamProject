@@ -28,7 +28,7 @@
     <a style='display:none;' id="boardLogin" class="nav-link" href="../jeju_board/jeju_board.do?message=mainBoard">게시판</a>
     <a style='display:none;' id="courseLogin" class="nav-link" href="course.do?message=list">코스추천</a>
     <a style='display:none;' id="contentsLogin" class="nav-link" href="../contents/contents.do?message=list">컨텐츠</a>
-    <a style='display:none;' id="info" class="nav-link" href="../login/login.do?m=info">${sessionScope.Member_Nick}님 어서오세요</a>
+    <a style='display:none;' id="info" class="nav-link" href="../member/mController?message=myPage">${sessionScope.Member_Nick}님 어서오세요</a>
     <a style='display:none;' id="logout" class="nav-link" href="../member/mController?message=logout">로그아웃</a>
 </nav>
 <c:if test="${sessionScope.Member_Nick ne null}">
@@ -84,49 +84,64 @@
 		<hr width='1000' size='2' noshade>
 		<h2>원하시는 테마를 선택하세요</h2>
 			&nbsp;&nbsp;&nbsp;
-		<a href='jeju_board.do?message=input&type='>글쓰기</a>
-			&nbsp;&nbsp;&nbsp;
-		<a href='jeju_board.do?message=index'>인덱스</a>
+		<a href='../jeju_board/jeju_board.do?message=index'>인덱스</a>
 		<hr width='1000' size='2' noshade>
 </center>
 
 <center>
+
 </br></br></br></br>
 
-
 <form>
-	<table border="1" width="800" height="200">
-		<tr>			
-				<img width="473" alt="제주도 사진" usemap="#jejumap" src="../img/${imageName}">
-				<map name="jejumap">
-				    <area shape="rect" coords="190,124,290,180" href='course.do?message=list&division=1' alt="제주의 숲">
-				    <area shape="rect" coords="140,44,285,97" href='course.do?message=list&division=2' alt="제주의 화려한 밤">
-				    <area shape="rect" coords="23,168,137,232" href='course.do?message=list&division=3' alt="제주에서의 힐링">
-				    <area shape="rect" coords="168,204,300,262" href='course.do?message=list&division=4' alt="열대지방 제주">
-				    <area shape="rect" coords="314,41,435,110" href='course.do?message=list&division=5' alt="모험가득한 제주">
-				</map>
-		</tr>
-	</table>
+   <table border="1" width="800" height="200">
+      <tr>         
+            <img width="473" alt="제주도 사진" usemap="#jejumap" src="../img/${imageName}">
+            <map name="jejumap">
+                <area shape="rect" coords="190,124,290,180" href='course.do?m=list&division=1' alt="제주의 숲">
+                <area shape="rect" coords="140,44,285,97" href='course.do?m=list&division=2' alt="제주의 화려한 밤">
+                <area shape="rect" coords="23,168,137,232" href='course.do?m=list&division=3' alt="제주에서의 힐링">
+                <area shape="rect" coords="168,204,300,262" href='course.do?m=list&division=4' alt="열대지방 제주">
+                <area shape="rect" coords="314,41,435,110" href='course.do?m=list&division=5' alt="모험가득한 제주">
+            </map>
+      </tr>
+   </table>
 </form>
 </center>
 
-<div style="margin-top:-150">
-	<table border='1' width='600' align='center' cellpadding='3'>
-	<tr>
-			<td width='85%' align='center'><b>코스이름</b></td>
-			<td width='15%' align='center'><b>좋아요</b></td>
-	</tr>
-	<c:if test="${empty list}">
-		<tr>
-			<td colspan="5" style="text-align:center">추천코스가 없습니다</td>
-		</tr>
-	</c:if>
-	<c:forEach items="${list}" var="course">
-		<tr>
-			<td align='center'><a href='course.do?message=list_con&seq=${course.cnum}'>${course.cname}</a>
-			</td>
-			<td align='center'>${course.love}</td>
-		</tr>
-	</c:forEach>
-	</table>
-</div>
+<style>
+table, th, td {
+border: 1px solid white;
+border-collapse: collapse;
+}
+th, td {
+padding: 5px;
+}
+a { text-decoration:none }
+</style>
+
+<table border='1' width='600' align='center' cellpadding='3' style="margin-top:-200">
+
+<center>
+</center>
+<font color="black"; face="나눔고딕 ExtraBold">
+<tr>
+      <td style="text-size:15px" width='85%' align='center'><Strong>코스이름</Strong></td>
+      <td style="text-size:15px"width='15%' align='center'><Strong>좋아요</Strong></td>
+</tr>
+</font>
+<c:if test="${empty list}">
+   <tr>
+      <td colspan="5" style="text-align:center">제주도 이미지에서 원하시는 테마를 선택하세요</td>
+   </tr>
+</c:if>
+<c:forEach items="${list}" var="course">
+   <tr>
+      <td align='center'><a href='course.do?message=list_con&seq=${course.cnum}'>${course.cname}</a>
+      </td>
+      <td align='center'>${course.love}</td>
+   </tr>
+</c:forEach>
+</table>
+<center>
+<hr width='600' height= '2' align='center' style="margin-bottom:100" noshade>
+</center>

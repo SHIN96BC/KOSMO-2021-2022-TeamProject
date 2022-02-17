@@ -1,11 +1,10 @@
 package land.mvc.model;
 
+import static jeju.all.consts.BoardConst.*;
+
 import java.util.ArrayList;
 
 import land.mvc.domain.Landmark;
-
-import static activity.mvc.model.BoardConst.PAGE;
-import static land.mvc.model.BoardConst.*;
 public class LandService {
 
 	private LandRepository dao;

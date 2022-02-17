@@ -27,7 +27,7 @@
     <a style='display:none;' id="boardLogin" class="nav-link" href="../jeju_board/jeju_board.do?message=mainBoard">게시판</a>
     <a style='display:none;' id="courseLogin" class="nav-link" href="course.do?message=list">코스추천</a>
     <a style='display:none;' id="contentsLogin" class="nav-link" href="../contents/contents.do?message=list">컨텐츠</a>
-    <a style='display:none;' id="info" class="nav-link" href="../login/login.do?m=info">${sessionScope.Member_Nick}님 어서오세요</a>
+    <a style='display:none;' id="info" class="nav-link" href="../member/mController?message=myPage">${sessionScope.Member_Nick}님 어서오세요</a>
     <a style='display:none;' id="logout" class="nav-link" href="../member/mController?message=logout">로그아웃</a>
 </nav>
 <c:if test="${sessionScope.Member_Nick ne null}">
@@ -71,48 +71,31 @@
 <center>
 	<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 	<style>
-		table, th, td {
-		   border: 1px solid black;
-		   border-collapse: collapse;
-		}
-		th, td {
-		   padding: 5px;
-		}
-		a { text-decoration:none }
-	</style>
-	<div style="margin-top:150;"></div>
-		<hr width='1000' size='2' noshade>
-		<h2>- ${course.cname} -</h2>
-			&nbsp;&nbsp;&nbsp;
-		<a href='jeju_board.do?message=input&type='>글쓰기</a>
-			&nbsp;&nbsp;&nbsp;
-		<a href='jeju_board.do?message=index'>인덱스</a>
-		<hr width='1000' size='2' noshade>
-</center>
-
-
-
+table, th, td {
+border: 1px solid white;
+border-collapse: collapse;
+}
+th, td {
+padding: 3px;
+}
+a { text-decoration:none }
+</style>
 <center>
-<div style="margin-top:100;"></div>
-</br>
-<div><a href='course.do?m=list' style="margin-left:450; margin-top:0; margin-bottom:0;">테마선택으로 돌아가기</a></div>
-<div class="img-box" ><img src="../img/${course.cphoto}" style="margin-left:-80; margin-top:20; margin-bottom:-180;" width="700" height="700" alt="이미지 못 불러옴"></div>
+<div style="margin-top:130"></div>
+<hr width='600' size='2' noshade>
+<div class="img-box" ><img src="../img/${course.cphoto}" style="margin-left:-80; margin-top:20; margin-bottom:-180;" width="500" height="500" alt="이미지 못 불러옴"></div>
+<h1>${course.cname}</h1>
 <hr width='600' size='2' noshade>
 <table border='1' width='600' align='center' cellpadding='3'>
 <c:if test="${empty course}">
-	<tr>
-		<td colspan="5" style="text-align:center">데이터가 없수꽝</td>
-	</tr>
+   <tr>
+      <td colspan="5" style="text-align:center">데이터가 없수꽝</td>
+   </tr>
 </c:if>
 
 <tr>
 <td width='100' align='center'>글번호</td>
 <td>${course.cnum}</td>
-</tr>
-<tr>
-<tr>
-<td align='center'>코스이름</td>
-<td>${course.cname}</td>
 </tr>
 <tr>
 <td align='center'>소개</td>
@@ -123,4 +106,6 @@
 <td>${course.cnavi}</td>
 </tr>
 </table>
+<hr width='600' size='2' noshade>
+<div><a href='course.do?m=list'>뒤로가기</a></div>
 </center>

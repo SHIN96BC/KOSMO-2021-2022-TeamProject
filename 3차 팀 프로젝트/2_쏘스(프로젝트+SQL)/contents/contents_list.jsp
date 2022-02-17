@@ -29,7 +29,7 @@
     <a style='display:none;' id="boardLogin" class="nav-link" href="../jeju_board/jeju_board.do?message=mainBoard">게시판</a>
     <a style='display:none;' id="courseLogin" class="nav-link" href="../course/course.do?message=list">코스추천</a>
     <a style='display:none;' id="contentsLogin" class="nav-link" href="contents.do?message=list">컨텐츠</a>
-    <a style='display:none;' id="info" class="nav-link" href="../login/login.do?m=info">${sessionScope.Member_Nick}님 어서오세요</a>
+    <a style='display:none;' id="info" class="nav-link" href="../member/mController?message=myPage">${sessionScope.Member_Nick}님 어서오세요</a>
     <a style='display:none;' id="logout" class="nav-link" href="../member/mController?message=logout">로그아웃</a>
 </nav>
 <c:if test="${sessionScope.Member_Nick ne null}">

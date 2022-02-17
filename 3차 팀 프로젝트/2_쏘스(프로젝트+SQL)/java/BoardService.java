@@ -1,9 +1,10 @@
 package jeju.board.model;
 
+import static jeju.all.consts.BoardConst.*;
+
 import java.util.ArrayList;
 
 import jeju.board.domain.Board;
-import static jeju.board.model.BoardConst.*;
 
 public class BoardService {
 	public static final BoardService INSTANCE = new BoardService();
@@ -51,18 +52,26 @@ public class BoardService {
 		repository.viewsUpdate(bnum, views);
 	}
 	public long loveCheckS(long bnum) {
-		return repository.viewsCheck(bnum);
+		return repository.loveCheck(bnum);
 	}
-	public void loveUpdateS(long bnum, long love) {
+	public long hateCheckS(long bnum) {
+		return repository.hateCheck(bnum);
+	}
+	public void loveUpS(long bnum, long love) {
 		love++;
-		repository.viewsUpdate(bnum, love);
+		repository.loveUpdate(bnum, love);
 	}
-	public long hateCheckS(long hate) {
-		return repository.viewsCheck(hate);
-	}
-	public void hateUpdateS(long bnum, long hate) {
+	public void hateUpS(long bnum, long hate) {
 		hate++;
-		repository.viewsUpdate(bnum, hate);
+		repository.hateUpdate(bnum, hate);
+	}
+	public void loveDownS(long bnum, long love) {
+		love--;
+		repository.loveUpdate(bnum, love);
+	}
+	public void hateDownS(long bnum, long hate) {
+		hate--;
+		repository.hateUpdate(bnum, hate);
 	}
 	
 	private String tagSet(Board board) {

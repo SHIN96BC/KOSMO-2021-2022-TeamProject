@@ -152,12 +152,7 @@ class BoardRepository {
 			}
 			pstmt.setInt(7, board.getDivision());
 			pstmt.setLong(8, board.getBnum());
-			int i = pstmt.executeUpdate();
-			if(i>0) {
-				System.out.println("인서트 성공");
-			}else {
-				System.out.println("인서트 실패");
-			}
+			pstmt.executeUpdate();
 		}catch(SQLException se) {
 			System.out.println("update se: "+se);
 		}finally {
@@ -240,7 +235,7 @@ class BoardRepository {
 		ResultSet rs = null;
 		try {
 			con = ds.getConnection();
-			pstmt = con.prepareStatement(VIEWS_CHECK);
+			pstmt = con.prepareStatement(HATE_CHECK);
 			pstmt.setLong(1, bnum);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
@@ -260,11 +255,13 @@ class BoardRepository {
 		PreparedStatement pstmt = null;
 		try {
 			con = ds.getConnection();
-			pstmt = con.prepareStatement(VIEWS_UP);
-			pstmt.setLong(1, bnum);
-			pstmt.setLong(2, hate);
+			pstmt = con.prepareStatement(HATE_UP);
+			pstmt.setLong(1, hate);
+			pstmt.setLong(2, bnum);
+			System.out.println("hate: " + hate);
 			pstmt.executeUpdate();
 		}catch(SQLException se) {
+			System.out.println("hate se: " + se);
 		}finally {
 			closeAll(con, pstmt, null);
 		}

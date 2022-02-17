@@ -8,7 +8,6 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
 
-import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -41,9 +40,7 @@ public class BoardController extends HttpServlet {
 				case "delete": delete(request, response); break;
 				case "updateList": updateList(request, response); break;
 				case "update": update(request, response); break;
-				case "loveUpdate": loveUpdate(request, response); break;
-				case "hateUpdate": hateUpdate(request, response); break;
-				//case "fileUpload": fileUpload(request); break;
+				case "loveHateUpdate": loveHateUpdate(request, response); break;
 				case "content": content(request, response); break;
 				default: mainBoard(request, response); break;
 			}
@@ -96,12 +93,11 @@ public class BoardController extends HttpServlet {
 		rd.forward(request, response);
 	}
 	private void content(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		Board board = new Board();
 		BoardService service = BoardService.getInstance();
 		long bnum = getBnum(request);
 		long views = service.viewsCheckS(bnum);
 		service.viewsUpdateS(bnum, views);
-		board = service.contentS(bnum);
+		Board board = service.contentS(bnum);
 		request.setAttribute("board", board);
 		
 		String view = "board_content.jsp";
@@ -130,43 +126,67 @@ public class BoardController extends HttpServlet {
 		BoardService service = BoardService.getInstance();
 		MultipartRequest mr = fileUpload(request, board);
 		board = getMrParameterAll(request, mr, board);
-		System.out.println("nick: " + board.getNick());
-		System.out.println("bnum: " + board.getBnum());
 		service.updateS(board);
 		
 		response.sendRedirect("jeju_board.do");
 	}
-	private void loveUpdate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+	private void loveHateUpdate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		BoardService service = BoardService.getInstance();
-		String boardKinds = getBoardKinds(request);
+		String set = getSet(request);
+		String div = getDiv(request);
 		long bnum = getBnum(request);
-		long love = service.loveCheckS(bnum);
-		service.loveUpdateS(bnum, love);
-		
-		String view = "../";
-		if(boardKinds.equals("mainBoard")) {
-			view = "main_board.jsp";
-		}else if(boardKinds.equals("boardContent")) {
-			view = "board_content.jsp";
+		if(set == null || div == null || bnum == -1) {
+			response.sendRedirect("jeju_board.do?message=mainBoard");
 		}
+		System.out.println("set: " + set);
+		if(div.equals("love")) {
+			long love = service.loveCheckS(bnum);
+			if(set.equals("up")) {
+				service.loveUpS(bnum, love);
+			}else if(set.equals("down")) {
+				service.loveDownS(bnum, love);
+			}else {
+				response.sendRedirect("jeju_board.do?message=mainBoard");
+			}
+		}else if(div.equals("hate")) {
+			long hate = service.hateCheckS(bnum);
+			if(set.equals("up")) {
+				service.hateUpS(bnum, hate);
+			}else if(set.equals("down")) {
+				service.hateDownS(bnum, hate);
+			}else {
+				response.sendRedirect("jeju_board.do?message=mainBoard");
+			}
+		}else {
+			response.sendRedirect("jeju_board.do?message=mainBoard");
+		}
+		Board board = service.contentS(bnum);
+		request.setAttribute("board", board);
+		
+		String view = "jeju_board.do?message=content&bnum="+bnum;
 		RequestDispatcher rd = request.getRequestDispatcher(view);
 		rd.forward(request, response);
 	}
-	private void hateUpdate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		BoardService service = BoardService.getInstance();
-		String boardKinds = getBoardKinds(request);
-		long bnum = getBnum(request);
-		long hate = service.hateCheckS(bnum);
-		service.hateUpdateS(bnum, hate);
-		
-		String view = "../";
-		if(boardKinds.equals("mainBoard")) {
-			view = "main_board.jsp";
-		}else if(boardKinds.equals("boardContent")) {
-			view = "board_content.jsp";
+	
+	private String getDiv(HttpServletRequest request) {
+		String div = request.getParameter("div");
+		if(div != null) {
+			div = div.trim();
+			if(div.length() != 0) {
+				return div;
+			}
 		}
-		RequestDispatcher rd = request.getRequestDispatcher(view);
-		rd.forward(request, response);
+		return null;
+	}
+	private String getSet(HttpServletRequest request) {
+		String set = request.getParameter("set");
+		if(set != null) {
+			set = set.trim();
+			if(set.length() != 0) {
+				return set;
+			}
+		}
+		return null;
 	}
 	private long getBnum(HttpServletRequest request) {
 		String bnumStr = request.getParameter("bnum");
@@ -183,136 +203,7 @@ public class BoardController extends HttpServlet {
 		}
 		return bnum;
 	}
-	private String getBoardKinds(HttpServletRequest request) {
-		String boardKind = null;
-		boardKind = request.getParameter("boardKinds");
-		if(boardKind != null) {
-			boardKind = boardKind.trim();
-			if(boardKind.length() != 0) {
-				return boardKind;
-			}
-		}
-		return boardKind;
-	}
-	private Board getParameterAll(HttpServletRequest request, Board board) {
-		String bnumStr = request.getParameter("bnum");
-		String nick = request.getParameter("nick");
-		String subject = request.getParameter("subject");
-		String kategorie = request.getParameter("kategorie");
-		String tag = request.getParameter("tag");
-		String content = request.getParameter("content");
-		String loveStr = request.getParameter("love");
-		String hateStr = request.getParameter("hate");
-		String viewsStr = request.getParameter("views");
-		String divisionStr = request.getParameter("division");
-		
-		if(bnumStr != null) {
-			bnumStr = bnumStr.trim();
-			if(bnumStr.length() != 0) {
-				try {
-					long bnum = Long.parseLong(bnumStr);
-					board.setBnum(bnum);
-				}catch(NumberFormatException nfe) {
-					board.setBnum(-1);
-				}
-			}else {
-				board.setBnum(-1);
-			}
-		}else {
-			board.setBnum(-1);
-		}
-		if(nick != null) {
-			nick = nick.trim();
-			if(nick.length() != 0) {
-				board.setNick(nick);
-			}
-		}
-		if(subject != null) {
-			subject = subject.trim();
-			if(subject.length() != 0) {
-				board.setSubject(subject);
-			}
-		}
-		if(kategorie != null) {
-			kategorie = kategorie.trim();
-			if(kategorie.length() != 0) {
-				board.setKategorie(kategorie);
-			}
-		}
-		if(tag != null) {
-			tag = tag.trim();
-			if(tag.length() != 0) {
-				board.setTag(tag);
-			}
-		}
-		if(content != null) {
-			content = content.trim();
-			if(content.length() != 0) {
-				board.setContent(content);
-			}
-		}
-		if(loveStr != null) {
-			loveStr = loveStr.trim();
-			if(loveStr.length() != 0) {
-				try {
-					long love = Long.parseLong(loveStr);
-					board.setLove(love);
-				}catch(NumberFormatException nfe) {
-					board.setLove(-1);
-				}
-			}else {
-				board.setLove(-1);
-			}
-		}else {
-			board.setLove(-1);
-		}
-		if(hateStr != null) {
-			hateStr = hateStr.trim();
-			if(hateStr.length() != 0) {
-				try {
-					long hate = Long.parseLong(hateStr);
-					board.setHate(hate);
-				}catch(NumberFormatException nfe) {
-					board.setHate(-1);
-				}
-			}else {
-				board.setHate(-1);
-			}
-		}else {
-			board.setHate(-1);
-		}
-		if(viewsStr != null) {
-			viewsStr = viewsStr.trim();
-			if(viewsStr.length() != 0) {
-				try {
-					long views = Long.parseLong(viewsStr);
-					board.setViews(views);
-				}catch(NumberFormatException nfe) {
-					board.setViews(-1);
-				}
-			}else {
-				board.setViews(-1);
-			}
-		}else {
-			board.setViews(-1);
-		}
-		if(divisionStr != null) {
-			divisionStr = divisionStr.trim();
-			if(divisionStr.length() != 0) {
-				try {
-					int division = Integer.parseInt(divisionStr);
-					board.setDivision(division);
-				}catch(NumberFormatException nfe) {
-					board.setDivision(-1);
-				}
-			}else {
-				board.setDivision(-1);
-			}
-		}else {
-			board.setDivision(-1);
-		}
-		return board;
-	}
+	
 	private Board getMrParameterAll(HttpServletRequest request, MultipartRequest mr, Board board) {
 		String bnumStr = mr.getParameter("bnum");
 		String nick = mr.getParameter("nick");
