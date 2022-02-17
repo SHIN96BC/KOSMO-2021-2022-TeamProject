@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=utf-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page errorPage="../index.jsp" %>
 
 <!doctype html>
 <html lang="en">
@@ -16,7 +17,7 @@
     
 
     <!-- Bootstrap core CSS -->
-<link href="../bootstrap-5.1.3-dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="css/bootstrap.min.css" rel="stylesheet">
 
     <style>
       .bd-placeholder-img {
@@ -111,8 +112,9 @@
           <div class="form-floating mb-3">
             <input type="password" class="form-control rounded-4" id="floatingPassword" name ="pwd" placeholder="Password">
             <label for="floatingPassword">Password</label>
+            <br>
           <button class="w-100 mb-2 btn btn-lg rounded-4 btn-primary" type="submit" name="sign" value="loginCheck">로그인</button>
-          <button class="w-100 mb-2 btn btn-lg rounded-4 btn-primary" type="reset" onclick="location.href='../'">취소</button>
+          <button class="w-100 mb-2 btn btn-lg rounded-4 btn-primary" type="submit" name="sign" value="index">취소</button>
           
           <hr class="my-4">
           <center>
@@ -129,6 +131,6 @@
 </div>
 
 <div class="b-example-divider"></div>
-    <script src="../bootstrap-5.1.3-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
   </body>
 </html>

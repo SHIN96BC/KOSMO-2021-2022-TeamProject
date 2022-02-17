@@ -5,15 +5,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
+<meta charset="utf-8">
+<title>마이 페이지</title>
+ <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.88.1">
-    <title>JEJU FRIENDS</title>
     <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/modals/">
 	<link href="css/bootstrap.min.css" rel="stylesheet">
-		<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+    <link href="modals.css" rel="stylesheet">
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 			<script>
 				function sample6_execDaumPostcode() {
 				        new daum.Postcode({
@@ -55,54 +72,14 @@
 			        }).open();
 			}
 	   </script>
-	   
-	<link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/cheatsheet/">
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/modals/">
-	<style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-      
-        * {
-		  margin: 15px;
-		  padding: 1px;
-		  box-sizing: border-box;
-		  }
-		  
-		  body {
-		  	font-family: 'NamuBarunGothic' , sans-serif;
-		  	
-		  }
-		  
-    </style>
-
-    <!-- Custom styles for this template -->
-    <link href="modals.css" rel="stylesheet"> 
 </head>
 <body>
-<center>
-      <h2>JEJU FRIENDS 회원정보</h2>
-         <hr width='600' size='2' noshade>
-<span><a href='../member/mController?message=memberManagement' class="basicLogin_item">회원목록</a> </span>
-<span><a href='../member/mController?message=logout' class="basicLogin_item">로그아웃</a> </span>
-    <hr width='600' size='2' noshade>
-  </center>
-  <fieldset>
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
   <symbol id="bootstrap" viewBox="0 0 118 94">
     <title>JEJU FRIENDS</title>
     <path fill-rule="evenodd" clip-rule="evenodd" d="M24.509 0c-6.733 0-11.715 5.893-11.492 12.284.214 6.14-.064 14.092-2.066 20.577C8.943 39.365 5.547 43.485 0 44.014v5.972c5.547.529 8.943 4.649 10.951 11.153 2.002 6.485 2.28 14.437 2.066 20.577C12.794 88.106 17.776 94 24.51 94H93.5c6.733 0 11.714-5.893 11.491-12.284-.214-6.14.064-14.092 2.066-20.577 2.009-6.504 5.396-10.624 10.943-11.153v-5.972c-5.547-.529-8.934-4.649-10.943-11.153-2.002-6.484-2.28-14.437-2.066-20.577C105.214 5.894 100.233 0 93.5 0H24.508zM80 57.863C80 66.663 73.436 72 62.543 72H44a2 2 0 01-2-2V24a2 2 0 012-2h18.437c9.083 0 15.044 4.92 15.044 12.474 0 5.302-4.01 10.049-9.119 10.88v.277C75.317 46.394 80 51.21 80 57.863zM60.521 28.34H49.948v14.934h8.905c6.884 0 10.68-2.772 10.68-7.727 0-4.643-3.264-7.207-9.012-7.207zM49.948 49.2v16.458H60.91c7.167 0 10.964-2.876 10.964-8.281 0-5.406-3.903-8.178-11.425-8.178H49.948z"></path>
-</symbol>
+  </symbol>
+
   <symbol id="exclamation-triangle-fill" viewBox="0 0 16 16">
     <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
   </symbol>
@@ -132,80 +109,71 @@
   <symbol id="film" viewBox="0 0 16 16">
     <path d="M0 1a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V1zm4 0v6h8V1H4zm8 8H4v6h8V9zM1 1v2h2V1H1zm2 3H1v2h2V4zM1 7v2h2V7H1zm2 3H1v2h2v-2zm-2 3v2h2v-2H1zM15 1h-2v2h2V1zm-2 3v2h2V4h-2zm2 3h-2v2h2V7zm-2 3v2h2v-2h-2zm2 3h-2v2h2v-2z"/>
   </symbol>
+
+  <symbol id="github" viewBox="0 0 16 16">
+    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+  </symbol>
+
+  <symbol id="twitter" viewBox="0 0 16 16">
+    <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"/>
+  </symbol>
+
+  <symbol id="facebook" viewBox="0 0 16 16">
+    <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/>
+  </symbol>
 </svg>
 <div class="b-example-divider"></div>
+<h1> 마이페이지 </h1>
 
 <div class="modal modal-signin position-static d-block bg-secondary py-5" tabindex="-1" role="dialog" id="modalSignin">
   <div class="modal-dialog" role="document">
     <div class="modal-content rounded-5 shadow">
       <div class="modal-header p-5 pb-4 border-bottom-0">
+        <!-- <h5 class="modal-title">Modal title</h5> -->
+        <center>
+        <img src="logo.jpg"> 
+        <!-- <h2 class="fw-bold mb-0">JEJU FRIENDS</h2>-->
+        </center>
+    
       </div>
 
-      <div class="modal-body p-5 pt-0">
-       <h2>${MemberInfoz.email} 님의 정보</h2>
-         <hr width='600' size='2' noshade>
-<form name='fs' method="post" action="../member/mController?message=memberUpdateUserAdmin">
-		<label for="email">EMAIL</label>
+<div class="modal-body p-5 pt-0">
+<span><a href='../member/mController?message=logout' class="basicLogin_item">로그아웃</a> </span>
+<span><a href='../member/mController?message=list' class="basicLogin_item">리스트</a> </span>
+<form name='fs' method="post" action="../member/mController?message=myPageUpdate">
 		<input type="email"  id="email" name="emails" value = "${MemberInfoz.email}" disabled>
 		<input type="hidden" name ="email" value = "${MemberInfoz.email}" >
-		<br>
-		<label for="pwd">PASSWORD</label>
 		<input type="password"  id="pwd" name="pwd" value = "${MemberInfoz.pwd}" placeholder="비밀번호">
-		<br>
-		<label for="name">NAME</label>
 		<input type="text"  id="name"  name="name" value = "${MemberInfoz.memName}" disabled><br>
-		<br>
-		<label for="birth">BIRTH</label>
 		<input type="date"  id="birth" name = "birth" value = "${MemberInfoz.birth}" disabled>	<br>
-		<br>
-		<label for="nick">NICKNAME</label>
 		<input type="text"  id="nick"  name = "nick" value = "${MemberInfoz.nick}"  placeholder="닉네임">	<br>
-		<br>
-		<label for="phone">PHONENUMBER</label>
 		<input type="tel"   id="phone" name = "phone" value = "${MemberInfoz.memPhone}" placeholder="전화번호">	<br>
-		<br>
-		<label for="anni">ANNI</label>
-		<input type="date"  id="anni"  value = "${MemberInfoz.anni}"  disabled>	<br>		
-		<br>
-		<label for="sample_postcode">ADDRESS</label>
-		<input type="button"class="form-control"  onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text"  class="form-control"  id="sample6_postcode"  name = "postNumber" value = "${MemberLocPostNumber} "placeholder="우편번호"><br>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text"  class="form-control"  id="sample6_address" name="Address" value = "${MemberLocAddress}"placeholder="주소"><br>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" 	class="form-control"  id="sample6_detailAddress" name="upAddress"  value="${MemberLocUpAddress}" placeholder="상세주소"><br>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text"  class="form-control"  id="sample6_extraAddress" placeholder="참고항목">
-		<br>	
-		<label for="gender">GENDER </label>
-			<c:choose>
-				<c:when test="${MemberInfoz.gender eq 0}">
-					<input type="text"  class="form-control" name = "gender" value = "남자" placeholder="성별" disabled>
-				</c:when>
-				<c:otherwise>
-					<input type="text"  class="form-control" name = "gender" value = "여자" placeholder="성별" disabled>
-				</c:otherwise>
-		</c:choose>
+		<input type="date"  id="anni"  value = "${MemberInfoz.anni}"  disabled>	<br>
 		
-		<br>	
-		<label for="solo">COUPLE </label>
+		<input type="text"  class="form-control"  id="sample6_postcode"  name = "postNumber" value = "${MemberLocPostNumber} "placeholder="우편번호">
+		<input type="button"class="form-control"  onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
+		<input type="text"  class="form-control"  id="sample6_address" name="Address" value = "${MemberLocAddress}"placeholder="주소"><br>
+		<input type="text" 	class="form-control"  id="sample6_detailAddress" name="upAddress"  value="${MemberLocUpAddress}" placeholder="상세주소">
+		<input type="text"  class="form-control"  id="sample6_extraAddress" placeholder="참고항목">
+		
+		<input type="text"  class="form-control" name = "gender" value = "${MemberInfoz.gender}" placeholder="성별" disabled>
 		<input type="radio" id ="solo" name="couple" value="0" checked>
 		<label for="solo">없음</label>
 		<input type="radio" id ="coupleC" name="couple" value="1" >
 		<label for="coupleC">커플</label><br>
 		<br>	
-		<label for="solo">LISENCE </label>
 		<input type="radio" id ="defaultLicense" name="lisence" value="0" checked>
 		<label for="defaultLicense">면허없음</label>
 		<input type="radio" id ="licenseC" name="lisence" value="1" >
 		<label for="licenseC">면허있음</label><br>
-		<br>	
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="정보 변경">
+		<input type="submit" value="전송">
 </form>
+      </div>
+    </div>
+  </div>
 </div>
-</div>
-</div>
-</div>
-</fieldset>
-	<div class="b-example-divider"></div>
-    <script src="js/bootstrap.bundle.min.js"></script>
 
+<div class="b-example-divider"></div>
+    <script src="js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

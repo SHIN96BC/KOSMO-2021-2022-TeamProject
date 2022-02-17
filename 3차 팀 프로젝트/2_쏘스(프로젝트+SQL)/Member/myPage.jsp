@@ -1,36 +1,38 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page errorPage="../index.jsp" %>
 
 <!doctype html>
 <html lang="en">
   <head>
-  
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.88.1">
-    
     <title>JEJU FRIENDS</title>
-	
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
 
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-    </style>
     <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/modals/">
-	<link href="css/bootstrap.min.css" rel="stylesheet">
+	  <link rel="stylesheet" href="css/register.css">
+    
+
+    <!-- Bootstrap core CSS -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+  * {
+  margin: 15px;
+  padding: 1px;
+  box-sizing: border-box;
+  }
+  
+  body {
+  	font-family: 'NamuBarunGothic' , sans-serif;
+  	
+  }
+  
+    </style>
+
+    
     <!-- Custom styles for this template -->
     <link href="modals.css" rel="stylesheet">
     	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -75,12 +77,13 @@
 			        }).open();
 			}
 	   </script>
+    
   </head>
   <body>
     
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
   <symbol id="bootstrap" viewBox="0 0 118 94">
-    <title>JEJU FRIENDS</title>
+ 
     <path fill-rule="evenodd" clip-rule="evenodd" d="M24.509 0c-6.733 0-11.715 5.893-11.492 12.284.214 6.14-.064 14.092-2.066 20.577C8.943 39.365 5.547 43.485 0 44.014v5.972c5.547.529 8.943 4.649 10.951 11.153 2.002 6.485 2.28 14.437 2.066 20.577C12.794 88.106 17.776 94 24.51 94H93.5c6.733 0 11.714-5.893 11.491-12.284-.214-6.14.064-14.092 2.066-20.577 2.009-6.504 5.396-10.624 10.943-11.153v-5.972c-5.547-.529-8.934-4.649-10.943-11.153-2.002-6.484-2.28-14.437-2.066-20.577C105.214 5.894 100.233 0 93.5 0H24.508zM80 57.863C80 66.663 73.436 72 62.543 72H44a2 2 0 01-2-2V24a2 2 0 012-2h18.437c9.083 0 15.044 4.92 15.044 12.474 0 5.302-4.01 10.049-9.119 10.88v.277C75.317 46.394 80 51.21 80 57.863zM60.521 28.34H49.948v14.934h8.905c6.884 0 10.68-2.772 10.68-7.727 0-4.643-3.264-7.207-9.012-7.207zM49.948 49.2v16.458H60.91c7.167 0 10.964-2.876 10.964-8.281 0-5.406-3.903-8.178-11.425-8.178H49.948z"></path>
   </symbol>
 
@@ -127,100 +130,138 @@
       <div class="modal-header p-5 pb-4 border-bottom-0">
         <!-- <h5 class="modal-title">Modal title</h5> -->
         <center>
-        <img src="logo.jpg"> 
-        <!-- <h2 class="fw-bold mb-0">JEJU FRIENDS</h2>-->
-        </center>
-    
+        
+   <h2>JEJU FRIENDS 마이페이지</h2>
+   
+   <c:choose>
+	<c:when test="${Member_Grade == 'admin'}">
+		<hr width='600' size='2' noshade>
+		<span><a href="../member/mController?message=myPage" class="basicLogin_item">마이페이지</a> </span>
+		<span><a href="../member/mController?message=memberManagement" class="basicLogin_item">회원관리</a> </span>
+		<span><a href='../member/mController?message=index' class="basicLogin_item">메인으로</a> </span>
+		<span><a href='../member/mController?message=logout' class="basicLogin_item">로그아웃</a> </span>
+		<hr width='600' size='2' noshade>
+	</c:when>
+	<c:when test="${ not empty Member_Email}">
+		<hr width='600' size='2' noshade>	
+		<span><a href="../member/mController?message=myPage" class="basicLogin_item">마이페이지</a> </span>
+		<span><a href='../member/mController?message=index' class="basicLogin_item">메인으로</a> </span>
+		<span><a href='../member/mController?message=logout' class="basicLogin_item">로그아웃</a> </span>
+		<hr width='600' size='2' noshade>
+	</c:when>
+	<c:otherwise>
+		<hr width='600' size='2' noshade>
+		<span><a href="../member/mController?message=loginform" class="basicLogin_item">로그인</a> </span>
+		<span><a href='../member/mController?message=index' class="basicLogin_item">메인으로</a> </span>
+		<span><a href="../member/mController?message=signform" class="basicLogin_item">회원가입</a> </span>
+		<hr width='600' size='2' noshade>
+	</c:otherwise>
+</c:choose>
+    	  
       </div>
-
+        </center>
+  <fieldset>
+    <div class="modal-body p-5 pt-0">
+       <h2>${MemberInfoz.email} 님의 정보</h2>
+         <hr width='600' size='2' noshade>
       <div class="modal-body p-5 pt-0">
-        <form name="f" action="../member/mController?message=signup" method="post">
+      <form name='fs' method="post" action="../member/mController?message=myPageUpdate">
           <div class="form-floating mb-3">
-            <input type="email" class="form-control rounded-4" id="email" name="email" placeholder="이메일" placeholder="name@example.com">
+          <input type="hidden" name ="email" value = "${MemberInfoz.email}" >
             <label for="email">Email address</label>
+            <input type="email" class="form-control rounded-4 " id="email" name="emails" value = "${MemberInfoz.email}" disabled>
             <br>
-            <div id="messages"></div>
-			<button class="w-100 mb-2 btn btn-lg rounded-4 btn-primary"id='checkEmailbutton'  type="submit"  value='이메일 중복확인' >이메일 중복확인</button>
           </div>
       
           <div class="form-floating mb-3">
-          	<input type="password" class="form-control rounded-4" id="pwd" name ="pwd" placeholder="Password" minlength="8">
-         	 <label for="pwd">Password</label>
+            <label for="pwd">Password</label>
+          	<input type="password" class="form-control rounded-4" id="pwd" name ="pwd" value = "${MemberInfoz.pwd}" placeholder="Password" minlength="8">
+         
           </div>
           
           <div class="form-floating mb-3">
+            	<label for="pwdCheck">PasswordCheck</label>
           	<input type="password" class="form-control rounded-4" id="pwdCheck" name="pwdCheck" placeholder="비밀번호확인" minlength="8">
-          	<label for="pwdCheck">PasswordCheck</label>
+          
      	  </div>
-     	  
-     	  <center>
-     	   <div id='checkPw'></div>
-     	  </center>	
-     	  
+     	     <div id='checkPw'></div>
      	  <div class="form-floating mb-3">
-         	 <input class="form-control rounded-4" type="text"  id="name"  name="name"  placeholder="이름" minlength="1">
-        	  <label for="name">Name</label>
+     	       <label for="name">Name</label>
+         	 <input class="form-control rounded-4" type="text"  id="name"  name="name" value = "${MemberInfoz.memName}" disabled placeholder="이름" minlength="1">
+        	
      	  </div>
      	  
      	       	  
      	  <div class="form-floating mb-3">
-         	 <input class="form-control rounded-4" type="date"  id="birth" name="birth" placeholder="생일">
-        	  <label for="birth">Brith</label>
+     	  
+     	       <label for="birth">Brith</label>
+         	 <input class="form-control rounded-4" type="date"  id="birth"  name = "birth" value = "${MemberInfoz.birth}" disabled placeholder="생일">
+        
      	  </div>
 
       	  <div class="form-floating mb-3">
-         	 <input class="form-control rounded-4" type="text"  id="nick"  name="nick"  placeholder="닉네임" minlength="2">
-        	  <label for="nick">Nickname</label>
+      	       <label for="nick">Nickname</label>
+         	 <input class="form-control rounded-4" type="text"    id="nick"  name = "nick" value = "${MemberInfoz.nick}"  minlength="2">
+        	
      	  </div>
      	  
+     	  
      	  <div class="form-floating mb-3">
-         	 <input class="form-control rounded-4" type="tel"   id="phone" name="phone" placeholder="전화번호">
-        	  <label for="phone">Phone</label>
+     	       <label for="phone">Phone</label>
+         	 <input class="form-control rounded-4" type="tel"   id="phone" name = "phone" value = "${MemberInfoz.memPhone}" placeholder="전화번호">
+        	
      	  </div>    	
      	   
      	  <div class="form-floating mb-3">
-         	 <input class="form-control rounded-4" type="date"  id="anni"  name="anni"  placeholder="기념일">
-        	 <label for="anni">Anni</label>
+     	     	 <label for="anni">Anni</label>
+         	 <input class="form-control rounded-4" type="date"  id="anni"  value = "${MemberInfoz.anni}"  disabled>
      	  </div>    
-         
-     	  <div class="form-floating mb-3">
-         	 <input type="button" class="form-control , w-100 mb-2 btn btn-lg rounded-4 btn-primary"  onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
-     	  </div>    
+   
      	  
      	            
           <div class="form-floating mb-3">
-         	 <input type="text"  class="form-control"  id="sample6_postcode"  name = "postNumber" placeholder="우편번호">
-        	 <label for="sample6_postcode">PostNumber</label>
+              <label for="sample6_postcode">PostNumber</label>
+         	  <input type="text"  class="form-control"  id="sample6_postcode"  name = "postNumber" value = "${MemberLocPostNumber} " placeholder="우편번호">
+         	 	 <input type="button" class="form-control , w-100 mb-2 btn btn-lg rounded-4 btn-primary"  onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
+        	
      	  </div>    
      	  
     
      	  <div class="form-floating mb-3">
-         	 <input type="text"  class="form-control"  id="sample6_address" name="Address" placeholder="주소">
-        	 <label for="sample6_address">Address</label>
+     	     <label for="sample6_address">Address</label>
+         	 <input type="text"  class="form-control"  id="sample6_address" name="Address"  value = "${MemberLocAddress}" placeholder="주소">
+        	 
      	  </div>    
          	
           <div class="form-floating mb-3">
-         	 <input type="text" 	class="form-control"  id="sample6_detailAddress" name="upAddress" placeholder="상세주소">
-        	 <label for="sample6_detailAddress">DetailAddress</label>
+             <label for="sample6_detailAddress">DetailAddress</label>
+         	 <input type="text" 	class="form-control"  id="sample6_detailAddress" name="upAddress"  value="${MemberLocUpAddress}" placeholder="상세주소">
+        	 
      	  </div>    
      	  
      	  <div class="form-floating mb-3">
-         	 <input type="text" 	class="form-control"  id="sample6_extraAddress" placeholder="참고항목">
-        	 <label for="sample6_extraAddress">ExtraAddress</label>
-     	  </div>    
-	     <center>
-		  <div class="btn-group3" role="group" aria-label="Basic radio toggle button group">
-			  <input type="radio" class="btn-check" id ="male" name="gender" value="0" autocomplete="off" checked>
-			  <label class="btn btn-outline-primary" for="male">남자</label>
+     	     <label for="sample6_extraAddress">ExtraAddress</label>
+         	 <input type="text" 	class="form-control"  id="sample6_extraAddress" >
+        	 
+     	  </div>
+     	 <div class="form-floating mb-3">
+     		 <label for="gender">Gender  </label>
+			<c:choose>
+				<c:when test="${MemberInfoz.gender eq 0}">
+					<input type="text"  class="form-control" name = "gender" value = "남자" placeholder="성별" disabled>
+				</c:when>
+				<c:otherwise>
+					<input type="text"  class="form-control" name = "gender" value = "여자" placeholder="성별" disabled>
 			
-			  <input type="radio" class="btn-check"  id ="female" name="gender" value="1" autocomplete="off">
-			  <label class="btn btn-outline-primary" for="female">여자</label>
-		  </div>
-		
-         </center>
+				</c:otherwise>
+				</c:choose>
+				</td>
+		</div>
+
+ 
 		 <br>
 		
-		 <center>
+
 		  <div class="btn-group2" role="group" aria-label="Basic radio toggle button group">
 			  <input type="radio" class="btn-check" id ="solo" name="couple" value="0" autocomplete="off" checked>
 			  <label class="btn btn-outline-primary" for="solo">솔로</label>
@@ -229,38 +270,35 @@
 			  <label class="btn btn-outline-primary" for="coupleC">커플</label>
 		  </div>
 		
-         </center>
+ 
 		 <br>
 		 
-		 <center>
+
 		  <div class="btn-group1" role="group" aria-label="Basic radio toggle button group">
-			  <input type="radio" class="btn-check" id ="defaultLicense" name="license" value="0" autocomplete="off" checked>
+			  <input type="radio" class="btn-check" id ="defaultLicense" name="lisence" value="0" autocomplete="off" checked>
 			  <label class="btn btn-outline-primary" for="defaultLicense">면허없음</label>
 			
-			  <input type="radio" class="btn-check"  id ="licenseC" name="license" value="1" autocomplete="off">
+			  <input type="radio" class="btn-check"  id ="licenseC" name="lisence" value="1" autocomplete="off">
 			  <label class="btn btn-outline-primary" for="licenseC">면허있음</label>
 		  </div>
 		
-         </center>
+  
 		 <br>
-          <hr class="my-4">
-          <center>
-          <h2 class="fs-5 fw-bold mb-3">회원가입</h2>
-          </center>
-          <button class="w-100 py-2 mb-2 btn btn-outline-secondary rounded-4" type="submit">
-            <svg class="bi me-1" width="16" height="16"></svg>
-            회원가입
-          </button>
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="submit" value="정보변경">
         </form>
       </div>
     </div>
   </div>
 </div>
-
-	<div class="b-example-divider"></div>
+</fieldset>
+<div class="b-example-divider"></div>
     <script src="js/bootstrap.bundle.min.js"></script>
-  	</body>
-	<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+  </body>
+  <script
+		   src="https://code.jquery.com/jquery-3.5.1.min.js"
+		   integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+		   crossorigin="anonymous">
+	</script>
 	<script>
 	$('#checkEmailbutton').on("click" , (e) => {
 		const email = $('#email').val();
@@ -273,8 +311,8 @@
 			url:'http://localhost:8080/project/member/mController?message=emailCheck',
 			dataType:'text',
 			data:{email:email},
-			success:function(data, textStatus) {
-				if(data==1){
+			success: function(data, textStatus) {
+				if (data == 1){
 					$('#messages').text('사용할 수 있는 이메일입니다.');
 					$('#checkEmailbutton').prop('disabled , true');
 				} else {
@@ -282,11 +320,11 @@
 				}
 			},
 			error:function(data, textStatus){
-				    
+				$('#messages').text('error');
 			}
 		
 		})
-	})
+	} )
 	</script>
 	<script src="js/jquery-3.6.0.min.js"></script>
 	<script type="text/javascript">
@@ -313,5 +351,4 @@
 					}	
 				}				
 	</script>
-
 </html>
